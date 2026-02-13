@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashish Kumar | PhD Researcher in Plasma Physics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #3182ce;
+            --accent-color: #ed8936;
+            --light-color: #f7fafc;
+            --dark-color: #2d3748;
+            --gray-color: #718096;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.7; color: var(--dark-color); background-color: #f9fafb; scroll-behavior: smooth; }
+        
+        h1, h2, h3, h4 { font-family: 'Source Serif Pro', serif; font-weight: 600; color: var(--primary-color); }
+        h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 1rem; }
+        h2 { font-size: 2.2rem; margin-bottom: 2rem; position: relative; display: inline-block; }
+        h2:after { content: ''; position: absolute; width: 50%; height: 4px; background-color: var(--secondary-color); bottom: -10px; left: 0; }
+
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        .section-padding { padding: 80px 0; }
+
+        header { background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05); position: fixed; top: 0; width: 100%; z-index: 1000; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 30px; }
+        .nav-links a { color: var(--dark-color); font-weight: 500; text-decoration: none; }
+
+        .hero { padding: 180px 0 100px; background: linear-gradient(135deg, #f6f9fc 0%, #e2e8f0 100%); }
+        .hero-content { display: flex; align-items: center; gap: 40px; }
+        .hero-text { flex: 1; }
+        .hero-image { flex: 1; text-align: right; }
+        .hero-image img { width: 300px; height: 300px; object-fit: cover; border-radius: 50%; border: 8px solid white; box-shadow: var(--box-shadow); }
+
+        .btn { display: inline-block; background: var(--secondary-color); color: white; padding: 12px 28px; border-radius: var(--border-radius); font-weight: 600; text-decoration: none; transition: 0.3s; }
+        .btn:hover { background: var(--primary-color); transform: translateY(-2px); }
+
+        .skills-tag { display: inline-block; background: #e2e8f0; color: var(--primary-color); padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; margin: 5px; font-weight: 500; }
+
+        .timeline { position: relative; max-width: 900px; margin: 0 auto; }
+        .timeline-item { padding: 20px; background: white; border-radius: var(--border-radius); box-shadow: var(--box-shadow); margin-bottom: 25px; border-left: 5px solid var(--secondary-color); }
+        .timeline-date { font-weight: 700; color: var(--secondary-color); margin-bottom: 5px; display: block; }
+
+        footer { background: var(--primary-color); color: white; padding: 60px 0 20px; margin-top: 50px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        
+        @media (max-width: 768px) { .hero-content { flex-direction: column; text-align: center; } .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo"><h3>Ashish Kumar</h3></div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#experience">CV</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Ashish Kumar</h1>
+                    <p style="font-size: 1.2rem; margin-bottom: 20px;">PhD Researcher in Plasma Physics | M.Tech IIT Jodhpur</p>
+                    <p>Dedicated to solving urban air quality challenges through Ion Mobility Spectrometry and Plasma Physics. Expertise in carbonaceous aerosol variability and environmental impact assessment.</p>
+                    <div style="margin-top: 30px;">
+                        <a href="#experience" class="btn">View Full CV</a>
+                        <a href="mailto:ashishkumar.ak570@gmail.com" class="btn" style="background: transparent; border: 2px solid var(--secondary-color); color: var(--secondary-color); margin-left: 10px;">Email Me</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="images/1769018538956.jpg" alt="Ashish Kumar">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section-padding">
+        <div class="container">
+            <h2>Technical Expertise</h2>
+            <div style="margin-top: 20px;">
+                <h4>Instrumentation & Lab</h4>
+                <span class="skills-tag">OC-EC Analyzer</span> <span class="skills-tag">Ion Chromatograph (IC)</span> 
+                <span class="skills-tag">UV Visible Spectrophotometer</span> <span class="skills-tag">Minivol Samplers</span>
+                <span class="skills-tag">Gas Analyzers (CO, O3, NOx)</span>
+                
+                <h4 style="margin-top: 20px;">Software & Programming</h4>
+                <span class="skills-tag">MATLAB</span> <span class="skills-tag">Python</span> <span class="skills-tag">ArcGIS / QGIS</span> 
+                <span class="skills-tag">OriginPro</span> <span class="skills-tag">Linux</span> <span class="skills-tag">Igor Pro</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section-padding" style="background: #f1f5f9;">
+        <div class="container">
+            <h2>Education & Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">2024 - Present</span>
+                    <h4>PhD Researcher | Plasma Physics</h4>
+                    <p><em>Comenius University in Bratislava</em></p>
+                    <p>Focusing on Ion Mobility Spectrometry for VOC detection.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">2023 - 2024</span>
+                    <h4>Project Associate | Environmental Impact</h4>
+                    <p><em>SAGE Mumbai</em></p>
+                    <p>Prepared EIA/EC reports and PFRs for industrial green projects.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">2021 - 2023</span>
+                    <h4>M.Tech | Environmental Engineering</h4>
+                    <p><em>IIT Jodhpur</em></p>
+                    <p>Thesis: Spatio-temporal variability of $PM_{2.5}$ carbonaceous aerosols in Kota, Rajasthan. Investigated SOC estimation and national ambient air quality standards.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">2015 - 2019</span>
+                    <h4>B.Tech | Civil Engineering</h4>
+                    <p><em>Rajkiya Engineering College Ambedkar Nagar</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <h2 style="text-align: center; display: block;">Get In Touch</h2>
+            <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <p><i class="fas fa-envelope"></i> ashishkumar.ak570@gmail.com / kumar18@uniba.sk</p>
+                <p><i class="fas fa-phone"></i> +91 8853280127</p>
+                <div style="margin-top: 30px;">
+                    <iframe height="300" src="https://www.youtube.com/embed/qC1P6FSWAk0" frameborder="0" style="width: 100%; border-radius: 12px;"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3>Ashish Kumar</h3>
+                    <p>PhD Researcher in Plasma Physics</p>
+                    <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 10px;">GATE Qualified (2021, 2024)</p>
+                </div>
+                <div style="text-align: center;">
+                    <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=6gB5Qr-sgguMhLOVmsh_rFBECepoO45EZUWsBepYuTU&w=200"></script>
+                </div>
+                <div>
+                    <p>Connect</p>
+                    <a href="https://orcid.org/0000-0002-2653-0216" style="color:white;"><i class="fab fa-orcid"></i> ORCID</a><br>
+                    <a href="https://sk.linkedin.com/in/kumarashish18" style="color:white;"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
