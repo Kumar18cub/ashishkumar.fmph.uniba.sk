@@ -1204,55 +1204,38 @@
     });
     
     // ============================================
-    // CONTACT FORM (EmailJS ready - you will edit later)
-    // ============================================
-    const contactForm = document.getElementById('contactForm');
-    const formStatus = document.getElementById('formStatus');
-    
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        
-        // ========================================
-        // TODO: REPLACE WITH YOUR EMAILJS CREDENTIALS
-        // Uncomment the code below and add your:
-        // - EmailJS User ID
-        // - Service ID
-        // - Template ID
-        // ========================================
-        
-        /*
-        // EmailJS configuration - REPLACE THESE VALUES
-        emailjs.init("YOUR_USER_ID"); 
-        emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
-            from_name: name,
-            from_email: email,
-            subject: document.getElementById('subject').value,
-            message: document.getElementById('message').value,
-        }).then(() => {
-            formStatus.innerHTML = "✅ Message sent successfully! I'll get back to you soon.";
-            formStatus.style.color = "green";
-            contactForm.reset();
-        }).catch((error) => {
-            formStatus.innerHTML = "❌ Error sending message. Please try again or email me directly.";
-            formStatus.style.color = "red";
-            console.error("EmailJS error:", error);
-        });
-        */
-        
-        // Demo mode - remove this when you add EmailJS
-        formStatus.innerHTML = "📧 Demo mode: Message would be sent. Replace EmailJS credentials in script to enable real email sending.";
-        formStatus.style.color = "var(--accent)";
-        setTimeout(() => {
-            formStatus.innerHTML = "";
-        }, 3000);
-        console.log("Form submitted (demo):", { name, email, subject: document.getElementById('subject').value });
-        
-        // Optional: clear form in demo mode
-        // contactForm.reset(); // uncomment if desired
+// CONTACT FORM (EmailJS enabled)
+// ============================================
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    // ========================================
+    // EMAILJS CONFIGURATION (Your real values)
+    // ========================================
+    emailjs.init("nBWEOsJzW8ZA6bVIb");  // Public Key
+
+    emailjs.send("service_ab2vlgp", "template_ccdlx7l", {
+        from_name: name,
+        from_email: email,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value,
+    }).then(() => {
+        formStatus.innerHTML = "✅ Message sent successfully! I'll get back to you soon.";
+        formStatus.style.color = "green";
+        contactForm.reset();
+    }).catch((error) => {
+        formStatus.innerHTML = "❌ Error sending message. Please try again or email me directly.";
+        formStatus.style.color = "red";
+        console.error("EmailJS error:", error);
     });
-    
+
+});
+
     // ============================================
     // ANIMATION ON SCROLL
     // ============================================
