@@ -38,7 +38,7 @@
             scroll-behavior: smooth;
         }
 
-        h1, h2, h3, .logo h1, .publication-title, .research-card h3 {
+        h1, h2, h3, .logo h1, .publication-title, .research-card h3, .talk-card h3 {
             font-family: 'Source Serif Pro', serif;
             font-weight: 600;
             letter-spacing: -0.01em;
@@ -181,6 +181,54 @@
             background: var(--secondary);
             color: white;
             border-color: var(--secondary);
+        }
+
+        /* talks grid */
+        .talks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .talk-card {
+            background: var(--card-white);
+            border-radius: 28px;
+            padding: 1.8rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--border-light);
+        }
+        .talk-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--secondary);
+        }
+        .talk-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .talk-date {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        .talk-title {
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
+        }
+        .talk-venue {
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+        .talk-links a {
+            font-size: 0.85rem;
+            margin-right: 1rem;
         }
 
         /* about stats */
@@ -431,6 +479,12 @@
         .badge-base {
             margin-top: 0.5rem;
         }
+        .page-section {
+            display: none;
+        }
+        .page-section.active-page {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -444,38 +498,41 @@
             </div>
             <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" data-page="home">Home</a></li>
+                <li><a href="#" data-page="about">About</a></li>
+                <li><a href="#" data-page="research">Research</a></li>
+                <li><a href="#" data-page="publications">Publications</a></li>
+                <li><a href="#" data-page="talks">Talks & Seminars</a></li>
+                <li><a href="#" data-page="experience">Experience</a></li>
+                <li><a href="#" data-page="contact">Contact</a></li>
             </ul>
         </div>
     </div>
 </header>
 
-<!-- Hero -->
-<section class="hero" id="home">
-    <div class="container">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Ashish Kumar<br><span style="color: var(--secondary);">PhD Researcher in Plasma Physics</span></h1>
-                <p>Ion mobility spectrometry · Atmospheric discharges · Air quality · Sustainable infrastructure. I combine plasma physics and environmental engineering to develop advanced sensors for healthier indoor and urban environments, aligned with SDG 3 & 11.</p>
-                <div>
-                    <a href="#publications" class="btn">Publications</a>
-                    <a href="#contact" class="btn btn-outline">Collaborate</a>
+<!-- HOME PAGE SECTION -->
+<section id="home-page" class="page-section active-page">
+    <div class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Ashish Kumar<br><span style="color: var(--secondary);">PhD Researcher in Plasma Physics</span></h1>
+                    <p>Ion mobility spectrometry · Atmospheric discharges · Air quality · Sustainable infrastructure. I combine plasma physics and environmental engineering to develop advanced sensors for healthier indoor and urban environments, aligned with SDG 3 & 11.</p>
+                    <div>
+                        <a href="#" data-page="publications" class="btn">Publications</a>
+                        <a href="#" data-page="talks" class="btn btn-outline">Upcoming Talks</a>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-image">
-                <img src="images/1769018538956.jpg" alt="Ashish Kumar - researcher" onerror="this.src='https://placehold.co/400x400?text=Dr.+Ashish+Kumar'">
+                <div class="hero-image">
+                    <img src="images/1769018538956.jpg" alt="Ashish Kumar - researcher" onerror="this.src='https://placehold.co/400x400?text=Dr.+Ashish+Kumar'">
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- About -->
-<section id="about" class="section-padding">
+<!-- ABOUT SECTION -->
+<section id="about-page" class="page-section section-padding">
     <div class="container">
         <h2>About Me</h2>
         <div class="about-content">
@@ -485,15 +542,15 @@
                 <div class="about-stats">
                     <div class="stat-item"><div class="stat-number">3+</div><div class="stat-label">Years Research</div></div>
                     <div class="stat-item"><div class="stat-number">5</div><div class="stat-label">Peer-reviewed works</div></div>
-                    <div class="stat-item"><div class="stat-number">4</div><div class="stat-label">Intl. Conferences</div></div>
+                    <div class="stat-item"><div class="stat-number">6+</div><div class="stat-label">Talks & Lectures</div></div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Research interests -->
-<section id="research" class="section-padding" style="background-color: var(--light-bg);">
+<!-- RESEARCH INTERESTS -->
+<section id="research-page" class="page-section section-padding" style="background-color: var(--light-bg);">
     <div class="container">
         <h2 style="text-align: center;">Research Focus</h2>
         <p style="text-align: center; max-width: 700px; margin: 0.5rem auto 0;">Advancing plasma-based sensing, air quality, and sustainable engineering.</p>
@@ -508,34 +565,95 @@
     </div>
 </section>
 
-<!-- Publications -->
-<section id="publications" class="section-padding">
+<!-- PUBLICATIONS SECTION -->
+<section id="publications-page" class="page-section section-padding">
     <div class="container">
         <h2 style="text-align: center;">Selected Publications</h2>
         <div class="publication-list">
             <div class="publication-item"><div class="publication-year">2025</div><div class="publication-title">Stabilization of Soil of Hilly Region Using Fly Ash With Various Additives</div><div class="publication-authors">Markuna, S., Jhinkwan, H., Kumar, A., Dumka, B.B.</div><div class="publication-venue">Advances in Research 26 (6):188-207</div><div class="publication-links"><a href="#"><i class="fas fa-file-pdf"></i> PDF</a> <a href="https://doi.org/10.9734/air/2025/v26i61540"><i class="fas fa-external-link-alt"></i> DOI</a></div></div>
             <div class="publication-item"><div class="publication-year">2025</div><div class="publication-title">Estimation of Soaked California Bearing Ratio of Soil Using Machine Learning Methods</div><div class="publication-authors">Markuna, S., Jhinkwan, H., Kumar, A., Dumka, B.B., Yadav, A.K.</div><div class="publication-venue">Journal of Scientific Research and Reports 31 (10):335–350</div><div class="publication-links"><a href="#"><i class="fas fa-file-pdf"></i> PDF</a> <a href="https://doi.org/10.9734/jsrr/2025/v31i103576"><i class="fas fa-external-link-alt"></i> DOI</a></div></div>
-            <div class="publication-item"><div class="publication-year">2024</div><div class="publication-title">Investigating spatio-temporal variability of PM2.5 carbonaceous aerosol species over semi-arid region (M.Tech Thesis)</div><div class="publication-authors">Kumar, A. – IIT Jodhpur</div><div class="publication-venue">Repository IIT Jodhpur / Under review</div><div class="publication-links"><a href="#">Preprint</a></div></div>
+            <div class="publication-item"><div class="publication-year">2024</div><div class="publication-title">Investigating spatio-temporal variability of PM2.5 carbonaceous aerosol species over semi-arid region (M.Tech Thesis)</div><div class="publication-authors">Kumar, A. – IIT Jodhpur</div><div class="publication-venue">Repository IIT Jodhpur</div></div>
         </div>
         <div style="text-align: center; margin-top: 2.5rem;"><a href="https://scholar.google.com/citations?user=XWhP61YAAAAJ&hl=en" class="btn" target="_blank"><i class="fas fa-graduation-cap"></i> Google Scholar Profile</a></div>
     </div>
 </section>
 
-<!-- Experience & Education -->
-<section id="experience" class="section-padding" style="background-color: var(--light-bg);">
+<!-- TALKS & SEMINARS PAGE (New) -->
+<section id="talks-page" class="page-section section-padding">
+    <div class="container">
+        <h2 style="text-align: center;">Invited Talks, Seminars & Lectures</h2>
+        <p style="text-align: center; max-width: 750px; margin: 1rem auto 2rem;">Sharing insights at the intersection of plasma physics, environmental monitoring, and sustainable infrastructure. Selected presentations from conferences, university seminars, and public lectures.</p>
+        <div class="talks-grid">
+            <div class="talk-card">
+                <div class="talk-icon"><i class="fas fa-chalkboard-user"></i></div>
+                <div class="talk-date">March 2026</div>
+                <div class="talk-title">Ion Mobility Spectrometry for Indoor VOC Monitoring</div>
+                <div class="talk-venue">Faculty Seminar, Comenius University Bratislava</div>
+                <p>Invited talk on drift tube IMS design, electron attachment studies, and real-time air quality applications.</p>
+                <div class="talk-links"><a href="#"><i class="fas fa-slideshare"></i> Slides (PDF)</a> <a href="#"><i class="fas fa-video"></i> Recording</a></div>
+            </div>
+            <div class="talk-card">
+                <div class="talk-icon"><i class="fas fa-globe"></i></div>
+                <div class="talk-date">November 2025</div>
+                <div class="talk-title">Plasma-Based Solutions for Clean Air: From Corona Discharges to IMS Sensors</div>
+                <div class="talk-venue">International Conference on Environmental Physics &amp; Engineering (ICEPE), Vienna</div>
+                <p>Keynote session: bridging low-temperature plasma and environmental sensing for SDG 3.</p>
+                <div class="talk-links"><a href="#"><i class="fas fa-file-powerpoint"></i> Conference slides</a></div>
+            </div>
+            <div class="talk-card">
+                <div class="talk-icon"><i class="fas fa-university"></i></div>
+                <div class="talk-date">September 2025</div>
+                <div class="talk-title">Carbonaceous Aerosols Over Semi-Arid Regions: Sources and Variability</div>
+                <div class="talk-venue">Department of Civil Engineering, IIT Jodhpur (Alumni Lecture Series)</div>
+                <p>Guest lecture on EC/OC, SOC estimation, and implications for regional climate policy.</p>
+                <div class="talk-links"><a href="#"><i class="fas fa-download"></i> Extended abstract</a></div>
+            </div>
+            <div class="talk-card">
+                <div class="talk-icon"><i class="fas fa-chalkboard"></i></div>
+                <div class="talk-date">June 2025</div>
+                <div class="talk-title">Machine Learning in Geotechnical & Environmental Engineering</div>
+                <div class="talk-venue">Doctoral Workshop: AI for Sustainability, Technical University Košice</div>
+                <p>Practical workshop on applying ML for soil CBR prediction and air quality modeling (hands-on session).</p>
+                <div class="talk-links"><a href="#"><i class="fab fa-github"></i> Code repository</a></div>
+            </div>
+            <div class="talk-card">
+                <div class="talk-icon"><i class="fas fa-industry"></i></div>
+                <div class="talk-date">February 2025</div>
+                <div class="talk-title">Environmental Impact Assessment & Green Building Performance</div>
+                <div class="talk-venue">Sustainable Infrastructure Summit, Mumbai (SAGE India)</div>
+                <p>Panel discussion on integrating LCA, EIA reports, and low-carbon development strategies.</p>
+                <div class="talk-links"><a href="#"><i class="fas fa-newspaper"></i> Event summary</a></div>
+            </div>
+            <div class="talk-card">
+                <div class="talk-icon"><i class="fas fa-microphone-alt"></i></div>
+                <div class="talk-date">December 2024</div>
+                <div class="talk-title">Plasma Physics for Environmental Engineers: Bridging Disciplines</div>
+                <div class="talk-venue">PhD Symposium, Faculty of Mathematics, Physics and Informatics, Bratislava</div>
+                <p>Flash talk highlighting interdisciplinary research opportunities in plasma-based air monitoring.</p>
+                <div class="talk-links"><a href="#"><i class="fas fa-eye"></i> Poster</a></div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <p style="color: var(--text-muted);"><i class="fas fa-calendar-alt"></i> For future speaking engagements or invited seminars, please reach out via the contact page.</p>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE & EDUCATION -->
+<section id="experience-page" class="page-section section-padding" style="background-color: var(--light-bg);">
     <div class="container">
         <h2 style="text-align: center;">Academic & Professional Journey</h2>
         <div class="timeline">
             <div class="timeline-item"><div class="timeline-date">2024 – present</div><div class="timeline-content"><h4>PhD Researcher in Plasma Physics</h4><div class="company">Comenius University Bratislava</div><p>Ion mobility spectrometry for VOC detection, building advanced IMS drift tube, supervised by Prof. Štefan Matejčík.</p></div></div>
             <div class="timeline-item"><div class="timeline-date">2023 – 2024</div><div class="timeline-content"><h4>Project Associate – EIA & Environmental Planning</h4><div class="company">SAGE Mumbai</div><p>Environmental Impact Assessment reports for industrial corridors, greenfield projects and infrastructure compliance.</p></div></div>
-            <div class="timeline-item"><div class="timeline-date">2021 – 2023</div><div class="timeline-content"><h4>M.Tech Infrastructure Engineering (Env. Eng.)</h4><div class="company">Indian Institute of Technology Jodhpur</div><p>CGPA: 8.6/10 · Thesis: Spatio-temporal variability of PM2.5 carbonaceous aerosols (EC, OC, SOC) over Rajasthan.</p></div></div>
-            <div class="timeline-item"><div class="timeline-date">2015 – 2019</div><div class="timeline-content"><h4>B.Tech Civil Engineering</h4><div class="company">Dr. A.P.J. Abdul Kalam Technical University, Lucknow</div><p>Project: Classification of soil in Uttar Pradesh – Geotechnical characterization.</p></div></div>
+            <div class="timeline-item"><div class="timeline-date">2021 – 2023</div><div class="timeline-content"><h4>M.Tech Infrastructure Engineering (Env. Eng.)</h4><div class="company">Indian Institute of Technology Jodhpur</div><p>Thesis: Spatio-temporal variability of PM2.5 carbonaceous aerosols (EC, OC, SOC) over Rajasthan.</p></div></div>
+            <div class="timeline-item"><div class="timeline-date">2015 – 2019</div><div class="timeline-content"><h4>B.Tech Civil Engineering</h4><div class="company">Dr. A.P.J. Abdul Kalam Technical University</div><p>Project: Classification of soil in Uttar Pradesh – Geotechnical characterization.</p></div></div>
         </div>
     </div>
 </section>
 
-<!-- Contact Section -->
-<section id="contact" class="section-padding">
+<!-- CONTACT SECTION -->
+<section id="contact-page" class="page-section section-padding">
     <div class="container">
         <h2 style="text-align: center;">Let’s Connect</h2>
         <p style="text-align: center; max-width: 680px; margin: 1rem auto;">Interested in collaboration, ion mobility systems, air quality research, or joint PhD supervision? Write to me.</p>
@@ -578,38 +696,65 @@
                 <a href="https://orcid.org/0000-0002-2653-0216" target="_blank"><i class="fab fa-orcid"></i></a>
             </div>
         </div>
-        <div class="copyright" style="text-align:center; border-top:1px solid rgba(255,255,255,0.15); padding-top:1.5rem; margin-top:1.5rem;"><p>&copy; 2026 Ashish Kumar — Open source portfolio. Last update: April 2026.</p></div>
+        <div class="copyright" style="text-align:center; border-top:1px solid rgba(255,255,255,0.15); padding-top:1.5rem; margin-top:1.5rem;"><p>&copy; 2026 Ashish Kumar — Open source portfolio. Talks page updated: April 2026.</p></div>
     </div>
 </footer>
 
 <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-    menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
-    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('active')));
+    // Single-page navigation: show/hide sections
+    const pages = ['home', 'about', 'research', 'publications', 'talks', 'experience', 'contact'];
+    function showPage(pageId) {
+        pages.forEach(p => {
+            const el = document.getElementById(`${p}-page`);
+            if (el) el.classList.remove('active-page');
+        });
+        const activeSection = document.getElementById(`${pageId}-page`);
+        if (activeSection) activeSection.classList.add('active-page');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // update active nav style
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-page') === pageId) link.classList.add('active');
+        });
+    }
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if(targetId === "#" || targetId === "") return;
-            const target = document.querySelector(targetId);
-            if(target) { e.preventDefault(); window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' }); }
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const page = link.getAttribute('data-page');
+            if (page) showPage(page);
         });
     });
+    document.querySelectorAll('[data-page]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const page = btn.getAttribute('data-page');
+            if (page) { e.preventDefault(); showPage(page); }
+        });
+    });
+    // default home
+    showPage('home');
 
+    // Mobile toggle
+    document.getElementById('menuToggle').addEventListener('click', function() {
+        document.getElementById('navLinks').classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active')));
+
+    // Form handler
     const form = document.getElementById('contactForm');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         const name = document.getElementById('name').value.trim();
-        if(name) alert(`Thank you ${name}! Your message has been received. I will reply to you soon.`);
-        else alert('Please fill your name.');
+        if(name) alert(`Thank you ${name}! Your message has been received. I will reply soon.`);
+        else alert('Please enter your name.');
         form.reset();
     });
 
+    // intersection animation
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('animate-in'); });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.research-card, .publication-item, .timeline-item').forEach(el => observer.observe(el));
+    document.querySelectorAll('.research-card, .publication-item, .timeline-item, .talk-card').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
