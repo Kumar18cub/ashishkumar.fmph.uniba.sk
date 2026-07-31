@@ -7,385 +7,1732 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Source+Serif+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ... (keep all existing styles) ... */
-        
-        /* Added small improvements */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-deep: #0b2b42;
+            --primary: #1a4b6e;
+            --secondary: #2c7da0;
+            --accent: #e67e22;
+            --accent-light: #f39c12;
+            --light-bg: #f4f9fc;
+            --card-white: #ffffff;
+            --text-dark: #1f2f3a;
+            --text-soft: #2c3e4e;
+            --text-muted: #5b6f82;
+            --border-light: #e2edf2;
+            --shadow-sm: 0 12px 28px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 20px 32px rgba(0, 0, 0, 0.08);
+            --transition: all 0.25s ease;
+            --radius: 28px;
+        }
+
+        body.dark {
+            --primary-deep: #0a1a2a;
+            --primary: #2c6280;
+            --secondary: #4a9fcc;
+            --accent: #f39c12;
+            --light-bg: #1a2a3a;
+            --card-white: #1e2e3e;
+            --text-dark: #eef2ff;
+            --text-soft: #cbd5e6;
+            --text-muted: #a0b3cc;
+            --border-light: #2d4055;
+            background: #121f2f;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        h1, h2, h3, h4, .logo h1, .publication-title, .research-card h3, .talk-card h3 {
+            font-family: 'Source Serif Pro', serif;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 4px;
+        }
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-light);
+            transition: background 0.3s;
+        }
+        body.dark header {
+            background: rgba(18,31,47,0.96);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            gap: 1rem;
+        }
+        .logo h1 {
+            font-size: 1.65rem;
+            margin: 0;
+            color: var(--primary-deep);
+            transition: color 0.3s;
+        }
+        .logo p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-soft);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            text-decoration: none;
+            position: relative;
+        }
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover:after,
+        .nav-links a.active:after {
+            width: 100%;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 1.7rem;
+            cursor: pointer;
+            color: var(--primary);
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: var(--text-soft);
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        .theme-toggle:hover {
+            background: var(--border-light);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, #f0f7fc 0%, #ffffff 100%);
+            padding: 5rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        body.dark .hero {
+            background: linear-gradient(135deg, #0a1a2a 0%, #121f2f 100%);
+        }
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+        .hero-text {
+            flex: 1.2;
+        }
+        .hero-text h1 {
+            font-size: 3rem;
+            color: var(--primary-deep);
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+        }
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 90%;
+        }
+        .hero-image {
+            flex: 0.8;
+            text-align: center;
+        }
+        .hero-image img {
+            max-width: 300px;
+            width: 100%;
+            border-radius: 2rem;
+            box-shadow: var(--shadow-hover);
+            border: 4px solid white;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .hero-image img:hover {
+            transform: scale(1.02);
+        }
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(230,126,34,0.25);
+            color: white;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+        .btn-sm {
+            padding: 0.4rem 1.2rem;
+            font-size: 0.85rem;
+        }
+        .btn-accent {
+            background: var(--accent);
+        }
+        .btn-accent:hover {
+            background: var(--primary);
+        }
+
+        /* ===== CARDS ===== */
+        .talks-grid,
+        .research-grid,
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .talk-card,
+        .research-card,
+        .blog-card {
+            background: var(--card-white);
+            border-radius: var(--radius);
+            padding: 1.8rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--border-light);
+        }
+        .talk-card:hover,
+        .research-card:hover,
+        .blog-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--secondary);
+        }
+
+        .talk-icon {
+            font-size: 2.2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .talk-date {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        .talk-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .talk-venue {
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+        .talk-links a {
+            font-size: 0.85rem;
+            margin-right: 1rem;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        .talk-links a:hover {
+            color: var(--accent);
+        }
+
+        .research-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+        .research-card a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        .research-card a:hover {
+            color: var(--accent);
+        }
+
+        .blog-date {
+            font-size: 0.7rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        .about-text {
+            flex: 2;
+        }
+        .about-text p {
+            margin-bottom: 1.2rem;
+        }
+        .about-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        /* ===== PUBLICATIONS ===== */
+        .publication-list {
+            max-width: 950px;
+            margin: 3rem auto 0;
+        }
+        .publication-item {
+            background: var(--card-white);
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-radius: 24px;
+            border-left: 5px solid var(--accent);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .publication-item:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow-hover);
+        }
+        .publication-year {
+            background: var(--primary);
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+        .publication-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.3rem;
+        }
+        .publication-authors {
+            color: var(--text-muted);
+            margin-bottom: 0.2rem;
+            font-size: 0.95rem;
+        }
+        .publication-venue {
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+        .publication-links a {
+            margin-right: 1rem;
+            font-size: 0.85rem;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        .publication-links a:hover {
+            color: var(--accent);
+        }
+        .pub-author {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline {
+            max-width: 800px;
+            margin: 3rem auto 0;
+            position: relative;
+        }
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 32px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--secondary);
+            opacity: 0.3;
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 70px;
+            margin-bottom: 2rem;
+        }
+        .timeline-date {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--accent);
+            color: white;
+            font-weight: 700;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+        .timeline-content {
+            background: var(--card-white);
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .timeline-content:hover {
+            box-shadow: var(--shadow-hover);
+        }
+        .timeline-content h4 {
+            margin-bottom: 0.2rem;
+        }
+        .timeline-content .company {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.8rem;
+            margin-top: 2rem;
+        }
+        .gallery-item {
+            background: var(--card-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--border-light);
+            cursor: pointer;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.03);
+        }
+        .gallery-caption {
+            padding: 0.8rem 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .upload-area {
+            background: var(--light-bg);
+            border: 2px dashed var(--secondary);
+            border-radius: var(--radius);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            margin: 1rem 0;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .upload-area:hover {
+            border-color: var(--accent);
+        }
+        .upload-area.drag-over {
+            background: rgba(44,125,160,0.08);
+            border-color: var(--accent);
+        }
+        .delete-img-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        .delete-img-btn:hover {
+            background: rgba(230,126,34,0.1);
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-container {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .contact-info, .contact-form {
+            flex: 1;
+            min-width: 280px;
+        }
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .contact-detail i {
+            width: 46px;
+            height: 46px;
+            background: var(--light-bg);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+        .contact-detail:hover i {
+            background: var(--secondary);
+            color: white;
+        }
+        .contact-detail h4 {
+            margin-bottom: 0.1rem;
+        }
+        .contact-detail p {
+            color: var(--text-muted);
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 2px solid var(--border-light);
+            border-radius: 24px;
+            font-family: inherit;
+            background: var(--card-white);
+            color: var(--text-dark);
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(44,125,160,0.1);
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--primary-deep);
+            color: #eef2ff;
+            padding: 3rem 0 2rem;
+            margin-top: 2rem;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .footer-logo h3 {
+            color: white;
+        }
+        .footer-logo p {
+            color: #bdd4e2;
+        }
+        .social-links {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .social-links a {
+            background: rgba(255,255,255,0.1);
+            width: 42px;
+            height: 42px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        .three-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        /* ===== MODALS ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.92);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+        }
+        .modal iframe, .modal img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 16px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+        .modal iframe {
+            width: 80%;
+            height: 80%;
+            background: white;
+        }
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            z-index: 2001;
+            transition: var(--transition);
+            background: none;
+            border: none;
+            font-weight: 300;
+        }
+        .close-modal:hover {
+            transform: rotate(90deg);
+            color: var(--accent);
+        }
+
+        /* ===== TOAST ===== */
+        .toast-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+            width: 100%;
+        }
+        .toast {
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            color: white;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideUp 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            backdrop-filter: blur(10px);
+        }
+        .toast-success { background: rgba(39,174,96,0.95); }
+        .toast-error { background: rgba(231,76,60,0.95); }
+        .toast-info { background: rgba(52,152,219,0.95); }
+        .toast-warning { background: rgba(243,156,18,0.95); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
         .loading-spinner {
             display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,0.3);
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
             border-radius: 50%;
             border-top-color: #fff;
             animation: spin 0.8s ease infinite;
+            margin-right: 8px;
         }
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-        
-        /* Improved mobile nav */
-        .nav-links.active {
-            display: flex;
-            animation: slideDown 0.3s ease;
+
+        /* ===== UTILITY ===== */
+        .page-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
+        .page-section.active-page {
+            display: block;
+            opacity: 1;
+        }
+        .animate-in {
+            animation: fadeUp 0.6s ease forwards;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        /* Toast notifications */
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 15px 25px;
-            border-radius: 12px;
-            color: white;
-            font-weight: 500;
-            z-index: 9999;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: slideUp 0.3s ease;
-            max-width: 400px;
+        .form-status {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
         }
-        .toast-success { background: #27ae60; }
-        .toast-error { background: #e74c3c; }
-        .toast-info { background: #3498db; }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .text-center { text-align: center; }
+        .text-muted { color: var(--text-muted); }
+        .mt-1 { margin-top: 1rem; }
+        .mt-2 { margin-top: 2rem; }
+        .mb-1 { margin-bottom: 1rem; }
+        .gap-1 { gap: 1rem; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .hero-text h1 { font-size: 2.4rem; }
+            .hero-content { gap: 2rem; }
+            .hero-text p { max-width: 100%; }
         }
+        @media (max-width: 780px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: var(--card-white);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 1.5rem 2rem;
+                gap: 1.2rem;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+                border-bottom: 1px solid var(--border-light);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .hero-text h1 { font-size: 2rem; }
+            .container { padding: 0 1.2rem; }
+            .section-padding { padding: 3rem 0; }
+            .about-stats { gap: 1.5rem; }
+            .stat-number { font-size: 2.2rem; }
+            .three-columns { flex-direction: column; align-items: flex-start; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .social-links { justify-content: center; }
+            .toast-container { right: 10px; left: 10px; max-width: 100%; }
+        }
+        @media (max-width: 480px) {
+            .hero-text h1 { font-size: 1.7rem; }
+            .hero-buttons .btn { width: 100%; justify-content: center; }
+            .talks-grid, .research-grid, .blog-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--light-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
     </style>
 </head>
 <body>
-    <!-- ... (keep all existing HTML structure) ... -->
+
+<!-- ===== HEADER ===== -->
+<header>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <h1>Ashish Kumar</h1>
+                <p>Plasma Physics | Environmental Engineer</p>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" data-page="home" class="active">Home</a></li>
+                <li><a href="#" data-page="about">About</a></li>
+                <li><a href="#" data-page="research">Research</a></li>
+                <li><a href="#" data-page="publications">Publications</a></li>
+                <li><a href="#" data-page="talks">Talks</a></li>
+                <li><a href="#" data-page="gallery">Gallery</a></li>
+                <li><a href="#" data-page="blog">News</a></li>
+                <li><a href="#" data-page="experience">Experience</a></li>
+                <li><a href="#" data-page="contact">Contact</a></li>
+            </ul>
+            <button id="darkModeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- ===== HOME ===== -->
+<section id="home-page" class="page-section active-page">
+    <div class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Ashish Kumar<br><span style="color: var(--secondary);">PhD Researcher in Plasma Physics</span></h1>
+                    <p>Ion mobility spectrometry · Atmospheric discharges · Air quality · Sustainable infrastructure. I combine plasma physics and environmental engineering to develop advanced ion mobility spectrometers for healthier indoor and urban environments, aligned with SDG 3 &amp; 11.</p>
+                    <div class="hero-buttons">
+                        <a href="#" data-page="publications" class="btn">📄 Publications</a>
+                        <a href="#" data-page="talks" class="btn btn-outline">🎤 Upcoming Talks</a>
+                        <a href="#" id="downloadCVBtn" class="btn btn-outline"><i class="fas fa-download"></i> CV</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="images/1769018538956.jpg" alt="Ashish Kumar - researcher" onerror="this.src='https://placehold.co/400x400/1a4b6e/white?text=Ashish+Kumar'">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about-page" class="page-section section-padding">
+    <div class="container">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I am a dedicated PhD researcher in Plasma Physics at Comenius University in Bratislava, holding an M.Tech in Infrastructure Engineering (Environmental Engineering) from IIT Jodhpur. My work merges experimental plasma physics with environmental monitoring — currently building an advanced ion mobility spectrometer for VOC detection in indoor environments.</p>
+                <p>Previously I've worked on carbonaceous aerosols (EC/OC) over semi-arid regions and contributed to EIA reports for infrastructure projects. My interdisciplinary background allows me to approach air pollution, green building performance, and low-carbon development from a unique perspective.</p>
+                <p>I regularly collaborate with atmospheric physics groups and material scientists, and I'm passionate about applying plasma technology to real-world environmental challenges.</p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">3+</span>
+                        <span class="stat-label">Years Research</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Peer-reviewed Works</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">6+</span>
+                        <span class="stat-label">Talks &amp; Lectures</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== RESEARCH ===== -->
+<section id="research-page" class="page-section section-padding" style="background-color: var(--light-bg);">
+    <div class="container">
+        <h2 class="text-center">Research Focus</h2>
+        <p class="text-center text-muted" style="max-width: 700px; margin: 0.5rem auto 2rem;">Advancing plasma-based sensing, air quality monitoring, and sustainable engineering solutions.</p>
+        <div class="research-grid">
+            <div class="research-card">
+                <i class="fas fa-microchip"></i>
+                <h3>Ion Mobility Spectrometry</h3>
+                <p>Development of IMS-oaTOF and drift tube instruments for VOC detection, electron swarm parameters, and ionization mechanisms.</p>
+                <a href="https://neon.dpp.fmph.uniba.sk/workgroup/index.php?option=com_content&view=article&id=14&Itemid=117" target="_blank">Laboratory of Plasma Physics →</a>
+            </div>
+            <div class="research-card">
+                <i class="fas fa-bolt"></i>
+                <h3>Atmospheric Discharges</h3>
+                <p>Corona discharge physics, ionization sources for mobility spectrometers, plasma chemistry, and discharge characterization.</p>
+            </div>
+            <div class="research-card">
+                <i class="fas fa-smog"></i>
+                <h3>Air Pollution &amp; Indoor Quality</h3>
+                <p>PM2.5 carbonaceous species, spatio-temporal variability, indoor VOCs, green building interventions, and exposure assessment.</p>
+                <a href="https://home.iitj.ac.in/~dbhattu/group.php" target="_blank">Aerosol Research Group IITJ →</a>
+            </div>
+            <div class="research-card">
+                <i class="fas fa-leaf"></i>
+                <h3>Environmental Sustainability</h3>
+                <p>Low-carbon development, life cycle assessment (LCA), green building performance, material footprint, and circular economy.</p>
+            </div>
+            <div class="research-card">
+                <i class="fas fa-brain"></i>
+                <h3>Machine Learning in Environment</h3>
+                <p>ML for soil CBR prediction, air quality forecasting, contamination source apportionment, and environmental modeling.</p>
+            </div>
+            <div class="research-card">
+                <i class="fas fa-recycle"></i>
+                <h3>EIA &amp; LCA</h3>
+                <p>Environmental impact assessment, sustainable infrastructure, life cycle thinking, and circular economy strategies.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PUBLICATIONS ===== -->
+<section id="publications-page" class="page-section section-padding">
+    <div class="container">
+        <h2 class="text-center">Selected Publications</h2>
+        <div class="publication-list">
+            <div class="publication-item">
+                <div class="publication-year">2025</div>
+                <div class="publication-title">Stabilization of Soil of Hilly Region Using Fly Ash With Various Additives</div>
+                <div class="publication-authors">Markuna, S., Jhinkwan, H., Kumar, A., Dumka, B.B.</div>
+                <div class="publication-venue">Advances in Research 26 (6):188-207</div>
+                <div class="publication-links">
+                    <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://doi.org/10.9734/air/2025/v26i61540" target="_blank"><i class="fas fa-external-link-alt"></i> DOI</a>
+                </div>
+            </div>
+            <div class="publication-item">
+                <div class="publication-year">2025</div>
+                <div class="publication-title">Estimation of Soaked California Bearing Ratio of Soil Using Machine Learning Methods</div>
+                <div class="publication-authors">Markuna, S., Jhinkwan, H., Kumar, A., Dumka, B.B., Yadav, A.K.</div>
+                <div class="publication-venue">Journal of Scientific Research and Reports 31 (10):335–350</div>
+                <div class="publication-links">
+                    <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://doi.org/10.9734/jsrr/2025/v31i103576" target="_blank"><i class="fas fa-external-link-alt"></i> DOI</a>
+                </div>
+            </div>
+            <div class="publication-item">
+                <div class="publication-year">2023</div>
+                <div class="publication-title">
+                    Investigating Spatio-temporal Variability of PM2.5 Carbonaceous Aerosol Species (EC, OC and SOC) Over Semi-arid Region of Rajasthan
+                    <br>
+                    <span class="pub-author">Ashish Kumar</span>
+                    <br>
+                    <a href="https://libraryopac.iitj.ac.in/cgi-bin/koha/opac-detail.pl?biblionumber=16626&shelfbrowse_itemnumber=28975" target="_blank" style="color: var(--secondary);">
+                        🔗 View Thesis
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-2">
+            <a href="https://scholar.google.com/citations?user=XWhP61YAAAAJ&hl=en" class="btn" target="_blank"><i class="fas fa-graduation-cap"></i> Google Scholar</a>
+            <a href="https://www.researchgate.net/" class="btn btn-outline" target="_blank"><i class="fab fa-researchgate"></i> ResearchGate</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TALKS ===== -->
+<section id="talks-page" class="page-section section-padding">
+    <div class="container">
+        <h2 class="text-center">Invited Talks &amp; Seminars</h2>
+        <p class="text-center text-muted" style="max-width: 750px; margin: 1rem auto 2rem;">Sharing insights at the intersection of plasma physics, environmental monitoring, and sustainable infrastructure.</p>
+        <div class="talks-grid">
+            <div class="talk-card">
+                <div class="talk-icon"><i class="fas fa-globe"></i></div>
+                <div class="talk-date">May 2026</div>
+                <div class="talk-title">Design and Development of a 10.6 eV Krypton VUV Lamp for Photoionization in Ion Mobility Spectrometry</div>
+                <div class="talk-venue">Week of Doctoral Students 2026, Charles University, Prague</div>
+                <div class="talk-links">
+                    <a href="#" class="pdf-view-link" data-pdf="https://physics.mff.cuni.cz/wds/proc/WDS26_Book_of_abstracts.pdf"><i class="fas fa-file-powerpoint"></i> Abstract</a>
+                </div>
+            </div>
+            <div class="talk-card">
+                <div class="talk-icon"><i class="fas fa-chalkboard"></i></div>
+                <div class="talk-date">December 2025</div>
+                <div class="talk-title">Temperature Dependent Detection of Ketones in Ion Mobility Spectrometry with Corona Discharge Ionization</div>
+                <div class="talk-venue">40th PSSI National Symposium, IIT Tirupati</div>
+                <p>Poster presentation on temperature-dependent detection of ketones.</p>
+                <div class="talk-links">
+                    <a href="#" class="pdf-view-link" data-pdf="https://iittpplasma2025.vercel.app/proceedings"><i class="fas fa-file-alt"></i> Abstract</a>
+                </div>
+            </div>
+            <div class="talk-card">
+                <div class="talk-icon"><i class="fas fa-microphone-alt"></i></div>
+                <div class="talk-date">November 2025</div>
+                <div class="talk-title">Detection of Indoor Ketones Using Ion Mobility Spectrometry with Air as Carrier Gas</div>
+                <div class="talk-venue">Comenius University, Bratislava</div>
+                <p>Indoor air quality and VOCs emitted from building materials.</p>
+                <div class="talk-links">
+                    <a href="#" class="pdf-view-link" data-pdf="https://conference.uniba.sk/event/1/contributions/111/attachments/68/97/Kumar%20Poster%2017122025.ak%20(1).pdf"><i class="fas fa-eye"></i> Poster</a>
+                </div>
+            </div>
+            <div class="talk-card">
+                <div class="talk-icon"><i class="fas fa-university"></i></div>
+                <div class="talk-date">October 2025</div>
+                <div class="talk-title">Temperature-Dependent Detection of Ketones in Ion Mobility Spectrometry</div>
+                <div class="talk-venue">Department Seminar, FMFI UK, Bratislava</div>
+                <div class="talk-links">
+                    <a href="#" class="pdf-view-link"><i class="fas fa-download"></i> Abstract</a>
+                </div>
+            </div>
+            <div class="talk-card">
+                <div class="talk-icon"><i class="fas fa-industry"></i></div>
+                <div class="talk-date">February 2025</div>
+                <div class="talk-title">Environmental Impact Assessment &amp; Green Building Performance</div>
+                <div class="talk-venue">Sustainable Infrastructure Summit, Mumbai (SAGE India)</div>
+                <p>Panel discussion on integrating LCA, EIA reports, and low-carbon development strategies.</p>
+                <div class="talk-links">
+                    <a href="#"><i class="fas fa-newspaper"></i> Event summary</a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-2">
+            <p class="text-muted"><i class="fas fa-calendar-alt"></i> For future speaking engagements, please reach out via the contact page.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section id="gallery-page" class="page-section section-padding">
+    <div class="container">
+        <h2 class="text-center">Image Gallery</h2>
+        <p class="text-center text-muted mb-1">Research snapshots, lab setups, conferences, and events.</p>
+        
+        <div class="upload-area" id="uploadArea">
+            <i class="fas fa-cloud-upload-alt" style="font-size: 2.8rem; color: var(--secondary); margin-bottom: 0.5rem; display: block;"></i>
+            <p style="font-weight: 500;">Drag &amp; drop images here or click to select</p>
+            <label class="btn btn-sm" for="imageUploadInput" style="display: inline-block; margin-top: 0.5rem; cursor: pointer;">
+                <i class="fas fa-plus-circle"></i> Select Images
+            </label>
+            <input type="file" id="imageUploadInput" multiple accept="image/jpeg, image/png, image/jpg, image/webp" style="display: none;">
+        </div>
+        
+        <div id="galleryContainer" class="gallery-grid">
+            <div style="grid-column:1/-1; text-align:center; padding: 3rem; color: var(--text-muted);">
+                <i class="fas fa-images" style="font-size: 4rem; opacity: 0.3; display:block; margin-bottom: 1rem;"></i>
+                <p style="font-size: 1.1rem;">No images yet. Upload your lab photos, conference pictures, or research posters.</p>
+            </div>
+        </div>
+        
+        <div class="text-center mt-1">
+            <button id="clearGalleryBtn" class="btn btn-outline btn-sm"><i class="fas fa-trash-alt"></i> Clear All Images</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== BLOG / NEWS ===== -->
+<section id="blog-page" class="page-section section-padding" style="background-color: var(--light-bg);">
+    <div class="container">
+        <h2 class="text-center">News &amp; Updates</h2>
+        <p class="text-center text-muted mb-1">Latest research activities, conference participations, and achievements.</p>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-date"><i class="far fa-calendar-alt"></i> August 2026</div>
+                <h3>Participation in IMSC 2026 Confirmed</h3>
+                <p>Registration and poster presentation confirmed for the 26th International Mass Spectrometry Conference (IMSC 2026), Lyon, France. The poster focuses on ketone isomer separations and symmetric/asymmetric dimer formation using APCI-Ion Mobility Spectrometry.</p>
+            </div>
+            <div class="blog-card">
+                <div class="blog-date"><i class="far fa-calendar-alt"></i> May 2026</div>
+                <h3>Presented at Week of Doctoral Students 2026</h3>
+                <p>Charles University, Prague – Presented research on "Design and Development of a 10.6 eV Krypton VUV Lamp for Photoionization in Ion Mobility Spectrometry".</p>
+            </div>
+            <div class="blog-card">
+                <div class="blog-date"><i class="far fa-calendar-alt"></i> December 2025</div>
+                <h3>Poster Presentation at IIT Tirupati</h3>
+                <p>40th PSSI National Symposium on Plasma Science and Technology – Presented on temperature-dependent detection of ketones using corona discharge IMS.</p>
+            </div>
+            <div class="blog-card">
+                <div class="blog-date"><i class="far fa-calendar-alt"></i> November 2025</div>
+                <h3>New Publication on Soil Stabilization</h3>
+                <p>Research paper "Stabilization of Soil of Hilly Region Using Fly Ash With Various Additives" published in Advances in Research (Vol. 26).</p>
+            </div>
+            <div class="blog-card">
+                <div class="blog-date"><i class="far fa-calendar-alt"></i> October 2025</div>
+                <h3>Department Seminar at FMFI UK</h3>
+                <p>Invited departmental seminar on "Temperature-Dependent Detection of Ketones in Ion Mobility Spectrometry with Corona Discharge Ionization".</p>
+            </div>
+        </div>
+        <div class="text-center mt-2">
+            <a href="#" data-page="contact" class="btn btn-accent"><i class="fas fa-envelope"></i> Subscribe for Updates</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== EXPERIENCE ===== -->
+<section id="experience-page" class="page-section section-padding" style="background-color: var(--light-bg);">
+    <div class="container">
+        <h2 class="text-center">Academic &amp; Professional Journey</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2024 – present</div>
+                <div class="timeline-content">
+                    <h4>PhD Researcher in Plasma Physics</h4>
+                    <div class="company">Comenius University Bratislava</div>
+                    <p>Ion mobility spectrometry for VOC detection, building advanced IMS drift tube, supervised by Prof. Štefan Matejčík.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2023 – 2024</div>
+                <div class="timeline-content">
+                    <h4>Project Associate – EIA &amp; Environmental Planning</h4>
+                    <div class="company">SAGE Mumbai</div>
+                    <p>Environmental Impact Assessment reports for industrial corridors, greenfield projects and infrastructure compliance.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2021 – 2023</div>
+                <div class="timeline-content">
+                    <h4>M.Tech Infrastructure Engineering (Env. Eng.)</h4>
+                    <div class="company">Indian Institute of Technology Jodhpur</div>
+                    <p>Thesis: Spatio-temporal variability of PM2.5 carbonaceous aerosols (EC, OC, SOC) over Rajasthan.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2015 – 2019</div>
+                <div class="timeline-content">
+                    <h4>B.Tech Civil Engineering</h4>
+                    <div class="company">Dr. A.P.J. Abdul Kalam Technical University</div>
+                    <p>Project: Classification of soil in Uttar Pradesh – Geotechnical characterization.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact-page" class="page-section section-padding">
+    <div class="container">
+        <h2 class="text-center">Let's Connect</h2>
+        <p class="text-center text-muted" style="max-width: 680px; margin: 1rem auto 2rem;">Interested in collaboration, ion mobility systems, air quality research? Write to me.</p>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Details</h3>
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p>kumar18@uniba.sk</p>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Location</h4>
+                        <p>Faculty of Mathematics, Physics &amp; Informatics<br>Comenius University, Mlynská dolina<br>84248 Bratislava, Slovakia</p>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <h4>Office</h4>
+                        <p>+421 2 602 95 311</p>
+                    </div>
+                </div>
+                <div class="social-links" style="margin-top: 1.5rem; margin-left: 0;">
+                    <a href="https://www.linkedin.com/in/kumarashish18/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Kumar18cub" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://scholar.google.com/citations?user=XWhP61YAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://orcid.org/0000-0002-2653-0216" target="_blank" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
+                    <a href="https://www.researchgate.net/" target="_blank" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
+                </div>
+                <iframe width="100%" height="200" src="https://www.youtube.com/embed/qC1P6FSWAk0?si=OkKMUxtenQc-y-g5&start=9" title="Plasma physics lab demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 20px; margin-top: 1.5rem;"></iframe>
+            </div>
+            <div class="contact-form">
+                <h3>Send a Message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="name@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" class="form-control" placeholder="Research / Collaboration" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" rows="4" placeholder="Your message..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn" id="sendBtn"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    <p id="formStatus" class="form-status"></p>
+                </form>
+                <p style="font-size: 0.75rem; margin-top: 1rem; color: var(--text-muted);">
+                    <i class="fas fa-code-branch"></i> Your message will be sent directly to my email.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Ashish Kumar</h3>
+                <p>PhD Researcher | Plasma Physics</p>
+                <div class="three-columns">
+                    <div>
+                        <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=6gB5Qr-sgguMhLOVmsh_rFBECepoO45EZUWsBepYuTU&w=150"></script>
+                    </div>
+                    <div>
+                        <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="kumarashish18" data-version="v1">
+                            <a class="badge-base__link LI-simple-link" href="https://sk.linkedin.com/in/kumarashish18?trk=profile-badge">LinkedIn</a>
+                        </div>
+                    </div>
+                    <div>
+                        <a id="cy-effective-orcid-url" href="https://orcid.org/0000-0002-2653-0216" target="_blank" style="color:#fff;">
+                            <img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1rem; vertical-align:middle;"> orcid.org/0000-0002-2653-0216
+                        </a>
+                        <br>
+                        <a href="https://info.flagcounter.com/u1g1">
+                            <img src="https://s01.flagcounter.com/countxl/u1g1/bg_0a2b42/txt_FFFFFF/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_1/pageviews_1/" alt="Flag Counter" border="0" style="margin-top:6px; max-width:100%;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/kumarashish18/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/Kumar18cub" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://scholar.google.com/citations?user=XWhP61YAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                <a href="https://orcid.org/0000-0002-2653-0216" target="_blank" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Ashish Kumar — All rights reserved. | Last updated: July 2026</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ===== MODALS ===== -->
+<div id="pdfModal" class="modal">
+    <button class="close-modal">&times;</button>
+    <iframe id="pdfFrame" style="width: 80%; height: 80%; background: white; border-radius: 16px;"></iframe>
+</div>
+<div id="imageModal" class="modal">
+    <button class="close-modal">&times;</button>
+    <img id="modalImg" style="max-width: 90%; max-height: 85vh; border-radius: 16px;">
+</div>
+
+<!-- ===== TOAST CONTAINER ===== -->
+<div id="toastContainer" class="toast-container"></div>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+    // ============================================
+    // TOAST NOTIFICATIONS
+    // ============================================
+    function showToast(message, type = 'info') {
+        const container = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        const icons = { success: '✅', error: '❌', warning: '⚠️', info: 'ℹ️' };
+        toast.innerHTML = `${icons[type] || 'ℹ️'} ${message}`;
+        container.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(30px)';
+            toast.style.transition = 'all 0.4s ease';
+            setTimeout(() => toast.remove(), 400);
+        }, 4000);
+    }
+
+    // ============================================
+    // PAGE NAVIGATION
+    // ============================================
+    const pageNames = ['home', 'about', 'research', 'publications', 'talks', 'gallery', 'blog', 'experience', 'contact'];
     
-    <!-- Add toast container -->
-    <div id="toastContainer"></div>
+    function showPage(pageId) {
+        // Hide all pages
+        pageNames.forEach(p => {
+            const el = document.getElementById(`${p}-page`);
+            if (el) el.classList.remove('active-page');
+        });
+        // Show target
+        const target = document.getElementById(`${pageId}-page`);
+        if (target) target.classList.add('active-page');
+        
+        // Update nav
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-page') === pageId) link.classList.add('active');
+        });
+        
+        // Close mobile menu
+        document.getElementById('navLinks').classList.remove('active');
+        document.querySelector('.menu-toggle i').className = 'fas fa-bars';
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-    <script>
-        // ============================================
-        // TOAST NOTIFICATIONS
-        // ============================================
-        function showToast(message, type = 'info') {
-            const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            toast.className = `toast toast-${type}`;
-            toast.textContent = message;
-            container.appendChild(toast);
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transform = 'translateY(20px)';
-                toast.style.transition = 'all 0.3s ease';
-                setTimeout(() => toast.remove(), 300);
-            }, 4000);
-        }
-
-        // ============================================
-        // IMPROVED CV DOWNLOAD
-        // ============================================
-        document.getElementById('downloadCVBtn')?.addEventListener('click', (e) => {
+    // Nav links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', (e) => {
             e.preventDefault();
-            showToast('📄 Opening CV...', 'info');
-            
-            // Open CV in new tab - replace with actual PDF URL
-            // window.open('path/to/your/cv.pdf', '_blank');
-            
-            // Or generate a simple CV
-            const cvContent = `
-                <html>
-                <head>
-                    <title>Ashish Kumar - CV</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.6; }
-                        h1 { color: #1a4b6e; border-bottom: 3px solid #e67e22; padding-bottom: 10px; }
-                        h2 { color: #2c7da0; margin-top: 25px; }
-                        .section { margin-bottom: 30px; }
-                        .item { margin-bottom: 15px; }
-                        .date { color: #666; font-weight: bold; }
-                    </style>
-                </head>
-                <body>
+            const page = link.getAttribute('data-page');
+            if (page) showPage(page);
+        });
+    });
+
+    // Data-page buttons
+    document.querySelectorAll('[data-page]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const page = btn.getAttribute('data-page');
+            if (page && !btn.closest('.nav-links')) {
+                e.preventDefault();
+                showPage(page);
+            }
+        });
+    });
+
+    // ============================================
+    // MOBILE MENU
+    // ============================================
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const icon = menuToggle.querySelector('i');
+        icon.className = navLinks.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.navbar') && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            document.querySelector('.menu-toggle i').className = 'fas fa-bars';
+        }
+    });
+
+    // ============================================
+    // DARK MODE
+    // ============================================
+    const darkToggle = document.getElementById('darkModeToggle');
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark');
+        darkToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+    darkToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        const isDark = document.body.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        darkToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        showToast(isDark ? '🌙 Dark mode enabled' : '☀️ Light mode enabled', 'info');
+    });
+
+    // ============================================
+    // PDF VIEWER
+    // ============================================
+    const pdfModal = document.getElementById('pdfModal');
+    const pdfFrame = document.getElementById('pdfFrame');
+    
+    document.querySelectorAll('.pdf-view-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const url = link.getAttribute('data-pdf');
+            if (url) {
+                pdfFrame.src = url;
+                pdfModal.style.display = 'flex';
+            } else {
+                showToast('PDF link not available yet', 'warning');
+            }
+        });
+    });
+
+    document.querySelectorAll('.close-modal').forEach(btn => {
+        btn.addEventListener('click', () => {
+            pdfModal.style.display = 'none';
+            document.getElementById('imageModal').style.display = 'none';
+            pdfFrame.src = '';
+        });
+    });
+
+    pdfModal.addEventListener('click', (e) => {
+        if (e.target === pdfModal) {
+            pdfModal.style.display = 'none';
+            pdfFrame.src = '';
+        }
+    });
+
+    const imageModal = document.getElementById('imageModal');
+    imageModal.addEventListener('click', (e) => {
+        if (e.target === imageModal) imageModal.style.display = 'none';
+    });
+
+    // ============================================
+    // GALLERY
+    // ============================================
+    let imageStore = [];
+    
+    function saveGallery() {
+        localStorage.setItem('ashish_gallery', JSON.stringify(imageStore));
+        renderGallery();
+    }
+    
+    function renderGallery() {
+        const container = document.getElementById('galleryContainer');
+        if (!container) return;
+        
+        if (imageStore.length === 0) {
+            container.innerHTML = `
+                <div style="grid-column:1/-1; text-align:center; padding: 3rem; color: var(--text-muted);">
+                    <i class="fas fa-images" style="font-size: 4rem; opacity: 0.3; display:block; margin-bottom: 1rem;"></i>
+                    <p style="font-size: 1.1rem;">No images yet. Upload your lab photos, conference pictures, or research posters.</p>
+                </div>
+            `;
+            return;
+        }
+        
+        let html = '';
+        imageStore.forEach((img, idx) => {
+            html += `
+                <div class="gallery-item" data-index="${idx}">
+                    <img src="${img.dataUrl}" alt="${img.name}" loading="lazy">
+                    <div class="gallery-caption">
+                        <span>${img.name}</span>
+                        <button class="delete-img-btn" data-idx="${idx}" aria-label="Delete image"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+        
+        document.querySelectorAll('.delete-img-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const idx = parseInt(btn.getAttribute('data-idx'));
+                if (confirm('Delete this image?')) {
+                    imageStore.splice(idx, 1);
+                    saveGallery();
+                    showToast('Image deleted', 'info');
+                }
+            });
+        });
+        
+        document.querySelectorAll('.gallery-item img').forEach(img => {
+            img.addEventListener('click', () => {
+                document.getElementById('modalImg').src = img.src;
+                imageModal.style.display = 'flex';
+            });
+        });
+    }
+    
+    function addImages(files) {
+        Array.from(files).forEach(file => {
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    imageStore.push({
+                        dataUrl: ev.target.result,
+                        name: file.name.length > 30 ? file.name.substr(0, 27) + '...' : file.name
+                    });
+                    saveGallery();
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        showToast(`${files.length} image(s) uploaded`, 'success');
+    }
+    
+    // Load stored
+    const stored = localStorage.getItem('ashish_gallery');
+    if (stored) {
+        try { imageStore = JSON.parse(stored); renderGallery(); } catch(e) {}
+    }
+    
+    // Upload handlers
+    const uploadInput = document.getElementById('imageUploadInput');
+    const uploadArea = document.getElementById('uploadArea');
+    
+    uploadInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+            addImages(e.target.files);
+            uploadInput.value = '';
+        }
+    });
+    
+    uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.classList.add('drag-over');
+    });
+    uploadArea.addEventListener('dragleave', () => {
+        uploadArea.classList.remove('drag-over');
+    });
+    uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove('drag-over');
+        if (e.dataTransfer.files.length > 0) addImages(e.dataTransfer.files);
+    });
+    uploadArea.addEventListener('click', () => uploadInput.click());
+    
+    document.getElementById('clearGalleryBtn')?.addEventListener('click', () => {
+        if (confirm('Delete all images?')) {
+            imageStore = [];
+            saveGallery();
+            showToast('All images cleared', 'warning');
+        }
+    });
+
+    // ============================================
+    // CV DOWNLOAD
+    // ============================================
+    document.getElementById('downloadCVBtn')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        showToast('📄 Generating CV...', 'info');
+        
+        // Open in new tab (replace with your actual PDF URL)
+        // window.open('cv.pdf', '_blank');
+        
+        // Or generate HTML CV
+        const cvHTML = `
+            <html>
+            <head><title>Ashish Kumar - CV</title>
+            <style>
+                body { font-family: 'Inter', Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.6; color: #1f2f3a; }
+                h1 { color: #1a4b6e; border-bottom: 3px solid #e67e22; padding-bottom: 10px; }
+                h2 { color: #2c7da0; margin-top: 25px; border-bottom: 1px solid #e2edf2; padding-bottom: 5px; }
+                .header { text-align: center; margin-bottom: 30px; }
+                .item { margin-bottom: 15px; }
+                .date { color: #666; font-weight: bold; display: inline-block; min-width: 120px; }
+                .section { margin-bottom: 30px; }
+                a { color: #2c7da0; }
+            </style>
+            </head>
+            <body>
+                <div class="header">
                     <h1>Ashish Kumar</h1>
                     <p><strong>PhD Researcher in Plasma Physics</strong><br>
                     Comenius University Bratislava<br>
                     Email: kumar18@uniba.sk</p>
-                    
-                    <div class="section">
-                        <h2>Education</h2>
-                        <div class="item">
-                            <span class="date">2024 – Present</span><br>
-                            <strong>PhD in Plasma Physics</strong><br>
-                            Comenius University Bratislava
-                        </div>
-                        <div class="item">
-                            <span class="date">2021 – 2023</span><br>
-                            <strong>M.Tech in Infrastructure Engineering (Environmental Engineering)</strong><br>
-                            IIT Jodhpur
-                        </div>
-                        <div class="item">
-                            <span class="date">2015 – 2019</span><br>
-                            <strong>B.Tech in Civil Engineering</strong><br>
-                            Dr. A.P.J. Abdul Kalam Technical University
-                        </div>
-                    </div>
-                    
-                    <div class="section">
-                        <h2>Research Experience</h2>
-                        <div class="item">
-                            <strong>Ion Mobility Spectrometry</strong><br>
-                            Development of drift tube IMS for VOC detection
-                        </div>
-                        <div class="item">
-                            <strong>Air Quality Monitoring</strong><br>
-                            PM2.5 carbonaceous aerosol studies over semi-arid regions
-                        </div>
-                    </div>
-                    
-                    <div class="section">
-                        <h2>Publications</h2>
-                        <div class="item">
-                            • Stabilization of Soil of Hilly Region Using Fly Ash With Various Additives (2025)<br>
-                            • Estimation of Soaked California Bearing Ratio of Soil Using Machine Learning (2025)
-                        </div>
-                    </div>
-                    
-                    <div class="section">
-                        <h2>Selected Talks</h2>
-                        <div class="item">
-                            • Week of Doctoral Students 2026, Charles University, Prague<br>
-                            • 40th PSSI National Symposium, IIT Tirupati (2025)
-                        </div>
-                    </div>
-                    
-                    <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; text-align: center; color: #666;">
-                        <p>Generated: ${new Date().toLocaleDateString()}</p>
-                    </div>
-                </body>
-                </html>
-            `;
-            
-            const blob = new Blob([cvContent], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            window.open(url, '_blank');
-            setTimeout(() => URL.revokeObjectURL(url), 1000);
-        });
+                </div>
+                <div class="section">
+                    <h2>Education</h2>
+                    <div class="item"><span class="date">2024 – Present</span> <strong>PhD in Plasma Physics</strong>, Comenius University Bratislava</div>
+                    <div class="item"><span class="date">2021 – 2023</span> <strong>M.Tech Infrastructure Engineering</strong>, IIT Jodhpur</div>
+                    <div class="item"><span class="date">2015 – 2019</span> <strong>B.Tech Civil Engineering</strong>, AKTU</div>
+                </div>
+                <div class="section">
+                    <h2>Research Experience</h2>
+                    <div class="item"><strong>Ion Mobility Spectrometry</strong> – Drift tube IMS for VOC detection, electron swarm parameters</div>
+                    <div class="item"><strong>Air Quality Monitoring</strong> – PM2.5 carbonaceous aerosol studies over semi-arid regions</div>
+                </div>
+                <div class="section">
+                    <h2>Publications</h2>
+                    <div class="item">• Stabilization of Soil of Hilly Region Using Fly Ash With Various Additives (2025)</div>
+                    <div class="item">• Estimation of Soaked California Bearing Ratio of Soil Using Machine Learning (2025)</div>
+                </div>
+                <div class="section">
+                    <h2>Selected Talks</h2>
+                    <div class="item">• Week of Doctoral Students 2026, Charles University, Prague</div>
+                    <div class="item">• 40th PSSI National Symposium, IIT Tirupati (2025)</div>
+                </div>
+                <div style="margin-top:40px; padding-top:20px; border-top:2px solid #eee; text-align:center; color:#666;">
+                    <p>Generated: ${new Date().toLocaleDateString()}</p>
+                </div>
+            </body>
+            </html>
+        `;
+        const blob = new Blob([cvHTML], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        window.open(url, '_blank');
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        showToast('📄 CV opened in new tab', 'success');
+    });
 
-        // ============================================
-        // IMPROVED PAGE NAVIGATION WITH ANIMATION
-        // ============================================
-        function showPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page-section').forEach(el => {
-                el.classList.remove('active-page');
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(10px)';
-            });
-            
-            // Show target page
-            const target = document.getElementById(`${pageId}-page`);
-            if (target) {
-                target.classList.add('active-page');
-                setTimeout(() => {
-                    target.style.opacity = '1';
-                    target.style.transform = 'translateY(0)';
-                    target.style.transition = 'all 0.3s ease';
-                }, 50);
-            }
-            
-            // Update navigation
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-page') === pageId) {
-                    link.classList.add('active');
-                }
-            });
-            
-            // Close mobile menu
-            document.getElementById('navLinks').classList.remove('active');
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    // ============================================
+    // CONTACT FORM (with EmailJS support)
+    // ============================================
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    const sendBtn = document.getElementById('sendBtn');
 
-        // ============================================
-        // CONTACT FORM WITH BETTER HANDLING
-        // ============================================
-        const contactForm = document.getElementById('contactForm');
-        const formStatus = document.getElementById('formStatus');
-
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const subject = document.getElementById('subject').value.trim();
-            const message = document.getElementById('message').value.trim();
-            
-            if (!name || !email || !subject || !message) {
-                formStatus.innerHTML = '⚠️ Please fill in all fields.';
-                formStatus.style.color = '#e74c3c';
-                return;
-            }
-            
-            // Show loading state
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
-            submitBtn.disabled = true;
-            
-            // Simulate sending (replace with actual EmailJS)
-            setTimeout(() => {
-                formStatus.innerHTML = '✅ Message sent successfully! I\'ll get back to you soon.';
-                formStatus.style.color = '#27ae60';
-                contactForm.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                showToast('✅ Message sent successfully!', 'success');
-            }, 1500);
-            
-            // ===== UNCOMMENT FOR REAL EMAILJS =====
-            /*
-            emailjs.init("YOUR_PUBLIC_KEY");
-            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
-                from_name: name,
-                from_email: email,
-                subject: subject,
-                message: message,
-            }).then(() => {
-                formStatus.innerHTML = '✅ Message sent successfully! I\'ll get back to you soon.';
-                formStatus.style.color = '#27ae60';
-                contactForm.reset();
-                showToast('✅ Message sent successfully!', 'success');
-            }).catch((error) => {
-                formStatus.innerHTML = '❌ Error sending message. Please try again or email me directly.';
-                formStatus.style.color = '#e74c3c';
-                showToast('❌ Failed to send message', 'error');
-                console.error('EmailJS error:', error);
-            }).finally(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            });
-            */
-        });
-
-        // ============================================
-        // IMPROVED IMAGE GALLERY
-        // ============================================
-        function renderGallery() {
-            const container = document.getElementById('galleryContainer');
-            if (!container) return;
-            
-            if (imageStore.length === 0) {
-                container.innerHTML = `
-                    <div style="grid-column:1/-1; text-align:center; padding: 3rem; color: var(--text-muted);">
-                        <i class="fas fa-images" style="font-size: 4rem; opacity: 0.3; display:block; margin-bottom: 1rem;"></i>
-                        <p style="font-size: 1.1rem;">No images yet. Upload your research photos, conference pictures, or lab setups.</p>
-                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Drag & drop or click the upload area above.</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            let html = '';
-            imageStore.forEach((img, idx) => {
-                html += `
-                    <div class="gallery-item" data-index="${idx}" style="animation: fadeUp 0.4s ease ${idx * 0.05}s both;">
-                        <img src="${img.dataUrl}" alt="${img.name}" loading="lazy">
-                        <div class="gallery-caption">
-                            <span><i class="far fa-image"></i> ${img.name}</span>
-                            <button class="delete-img-btn" data-idx="${idx}" aria-label="Delete image">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-            
-            // Delete handlers
-            document.querySelectorAll('.delete-img-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const idx = parseInt(btn.getAttribute('data-idx'));
-                    if (confirm('Delete this image?')) {
-                        imageStore.splice(idx, 1);
-                        saveGallery();
-                        showToast('🗑️ Image deleted', 'info');
-                    }
-                });
-            });
-            
-            // Click to enlarge
-            document.querySelectorAll('.gallery-item img').forEach(img => {
-                img.addEventListener('click', () => {
-                    const modalImg = document.getElementById('modalImg');
-                    modalImg.src = img.src;
-                    document.getElementById('imageModal').style.display = 'flex';
-                });
-            });
-        }
-
-        // ============================================
-        // BETTER MOBILE MENU
-        // ============================================
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
         
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = menuToggle.querySelector('i');
-            icon.className = navLinks.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (!name || !email || !subject || !message) {
+            formStatus.innerHTML = '⚠️ Please fill in all fields.';
+            formStatus.style.color = '#e74c3c';
+            return;
+        }
+
+        // Loading state
+        const originalText = sendBtn.innerHTML;
+        sendBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
+        sendBtn.disabled = true;
+
+        // ===== UNCOMMENT FOR EMAILJS =====
+        /*
+        emailjs.init("YOUR_PUBLIC_KEY");
+        emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+            from_name: name,
+            from_email: email,
+            subject: subject,
+            message: message,
+        }).then(() => {
+            formStatus.innerHTML = '✅ Message sent successfully! I\'ll get back to you soon.';
+            formStatus.style.color = '#27ae60';
+            contactForm.reset();
+            showToast('✅ Message sent successfully!', 'success');
+        }).catch((error) => {
+            formStatus.innerHTML = '❌ Error sending message. Please try again.';
+            formStatus.style.color = '#e74c3c';
+            showToast('❌ Failed to send message', 'error');
+            console.error('EmailJS error:', error);
+        }).finally(() => {
+            sendBtn.innerHTML = originalText;
+            sendBtn.disabled = false;
         });
+        */
 
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.navbar') && navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                menuToggle.querySelector('i').className = 'fas fa-bars';
-            }
+        // ===== SIMULATED SEND (remove when using EmailJS) =====
+        setTimeout(() => {
+            formStatus.innerHTML = '✅ Message sent successfully! I\'ll get back to you soon.';
+            formStatus.style.color = '#27ae60';
+            contactForm.reset();
+            sendBtn.innerHTML = originalText;
+            sendBtn.disabled = false;
+            showToast('✅ Message sent successfully!', 'success');
+        }, 1500);
+    });
+
+    // ============================================
+    // KEYBOARD SHORTCUTS
+    // ============================================
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.key >= '1' && e.key <= '9') {
+            e.preventDefault();
+            const idx = parseInt(e.key) - 1;
+            if (pageNames[idx]) showPage(pageNames[idx]);
+        }
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+        }
+    });
+
+    // ============================================
+    // SCROLL ANIMATIONS
+    // ============================================
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('animate-in');
         });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.research-card, .publication-item, .timeline-item, .talk-card, .blog-card, .gallery-item').forEach(el => observer.observe(el));
 
-        // ============================================
-        // KEYBOARD SHORTCUTS
-        // ============================================
-        document.addEventListener('keydown', (e) => {
-            // Ctrl+1-9 to navigate pages
-            if (e.ctrlKey && e.key >= '1' && e.key <= '9') {
-                e.preventDefault();
-                const index = parseInt(e.key) - 1;
-                const pages = ['home', 'about', 'research', 'publications', 'talks', 'gallery', 'blog', 'experience', 'contact'];
-                if (pages[index]) showPage(pages[index]);
-            }
-            
-            // Escape to close modals
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.modal').forEach(modal => {
-                    modal.style.display = 'none';
-                });
-            }
-        });
-
-        // ============================================
-        // PROGRESS INDICATOR FOR SCROLLING
-        // ============================================
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = (scrollTop / docHeight) * 100;
-            
-            // Update progress bar if you want to add one
-            // document.getElementById('progressBar')?.style.setProperty('width', progress + '%');
-        });
-
-        // ============================================
-        // INITIALIZATION
-        // ============================================
-        showPage('home');
-        renderGallery();
-
-        console.log('🚀 Ashish Kumar Portfolio loaded successfully!');
-        console.log('📧 For issues, contact: kumar18@uniba.sk');
-        console.log('🌙 Press Ctrl+1-9 for quick navigation');
-    </script>
+    // ============================================
+    // INIT
+    // ============================================
+    showPage('home');
+    console.log('🚀 Ashish Kumar Portfolio loaded successfully!');
+    console.log('📧 Email: kumar18@uniba.sk');
+    console.log('⌨️ Press Ctrl+1-9 for quick navigation');
+</script>
 </body>
 </html>
