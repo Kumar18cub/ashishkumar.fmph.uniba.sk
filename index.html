@@ -1,1298 +1,471 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Ashish Kumar | Plasma Physics & Environmental Engineering Researcher</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Source+Serif+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashish Kumar | PhD Researcher</title>
 
-        :root {
-            --primary-deep: #0b2b42;
-            --primary: #1a4b6e;
-            --secondary: #2c7da0;
-            --accent: #e67e22;
-            --accent-light: #f39c12;
-            --light-bg: #f4f9fc;
-            --card-white: #ffffff;
-            --text-dark: #1f2f3a;
-            --text-soft: #2c3e4e;
-            --text-muted: #5b6f82;
-            --border-light: #e2edf2;
-            --shadow-sm: 0 12px 28px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 20px 32px rgba(0, 0, 0, 0.08);
-            --transition: all 0.25s ease;
-        }
+https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        /* Dark mode variables */
-        body.dark {
-            --primary-deep: #0a1a2a;
-            --primary: #2c6280;
-            --secondary: #4a9fcc;
-            --accent: #f39c12;
-            --light-bg: #1a2a3a;
-            --card-white: #1e2e3e;
-            --text-dark: #eef2ff;
-            --text-soft: #cbd5e6;
-            --text-muted: #a0b3cc;
-            --border-light: #2d4055;
-            background: #121f2f;
-        }
+<style>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            color: var(--text-dark);
-            line-height: 1.55;
-            scroll-behavior: smooth;
-            transition: background 0.3s, color 0.3s;
-        }
+:root{
+    --primary:#0F172A;
+    --secondary:#2563EB;
+    --accent:#06B6D4;
+    --bg:#F8FAFC;
+    --card:#FFFFFF;
+    --text:#1E293B;
+    --muted:#64748B;
+}
 
-        h1, h2, h3, .logo h1, .publication-title, .research-card h3, .talk-card h3 {
-            font-family: 'Source Serif Pro', serif;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-        h2:after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 0;
-            width: 70px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 4px;
-        }
-        .section-padding {
-            padding: 5rem 0;
-        }
+body{
+    font-family:Inter,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+}
 
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            width: 100%;
-        }
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:0 25px;
+}
 
-        /* header / navbar */
-        header {
-            background: rgba(255,255,255,0.96);
-            backdrop-filter: blur(8px);
-            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-light);
-        }
-        body.dark header {
-            background: rgba(18,31,47,0.96);
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-        .logo h1 {
-            font-size: 1.65rem;
-            margin: 0;
-            color: var(--primary-deep);
-        }
-        .logo p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin: 0;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2.2rem;
-            list-style: none;
-        }
-        .nav-links a {
-            font-weight: 500;
-            color: var(--text-soft);
-            transition: var(--transition);
-            font-size: 0.98rem;
-        }
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--accent);
-        }
-        .menu-toggle {
-            display: none;
-            font-size: 1.7rem;
-            cursor: pointer;
-            color: var(--primary);
-        }
-        .theme-toggle {
-            background: none;
-            border: none;
-            font-size: 1.3rem;
-            cursor: pointer;
-            color: var(--text-soft);
-            margin-left: 1rem;
-            padding: 0.5rem;
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-        .theme-toggle:hover {
-            background: var(--border-light);
-        }
+header{
+    background:white;
+    position:sticky;
+    top:0;
+    z-index:999;
+    box-shadow:0 2px 20px rgba(0,0,0,.05);
+}
 
-        /* hero */
-        .hero {
-            background: linear-gradient(120deg, #f0f7fc 0%, #ffffff 100%);
-            padding: 5rem 0 4rem;
-        }
-        body.dark .hero {
-            background: linear-gradient(120deg, #0a1a2a 0%, #121f2f 100%);
-        }
-        .hero-content {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-        .hero-text {
-            flex: 1.2;
-        }
-        .hero-text h1 {
-            font-size: 2.7rem;
-            color: var(--primary-deep);
-            margin-bottom: 1.2rem;
-        }
-        .hero-text p {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            max-width: 90%;
-        }
-        .hero-image {
-            flex: 0.8;
-            text-align: center;
-        }
-        .hero-image img {
-            max-width: 280px;
-            width: 100%;
-            border-radius: 2rem;
-            box-shadow: var(--shadow-hover);
-            border: 4px solid white;
-            object-fit: cover;
-        }
-        .btn {
-            display: inline-block;
-            background: var(--secondary);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 40px;
-            font-weight: 600;
-            transition: var(--transition);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            border: none;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 20px rgba(230,126,34,0.2);
-            color: white;
-        }
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--secondary);
-            color: var(--secondary);
-            margin-left: 0.8rem;
-        }
-        .btn-outline:hover {
-            background: var(--secondary);
-            color: white;
-            border-color: var(--secondary);
-        }
-        .btn-sm {
-            padding: 0.4rem 1rem;
-            font-size: 0.85rem;
-        }
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 0;
+}
 
-        /* talks grid */
-        .talks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        .talk-card {
-            background: var(--card-white);
-            border-radius: 28px;
-            padding: 1.8rem;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            border: 1px solid var(--border-light);
-        }
-        .talk-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--secondary);
-        }
-        .talk-icon {
-            font-size: 2rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-        .talk-date {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }
-        .talk-title {
-            font-size: 1.35rem;
-            margin-bottom: 0.75rem;
-        }
-        .talk-venue {
-            font-weight: 500;
-            color: var(--text-muted);
-            margin-bottom: 0.8rem;
-            font-size: 0.9rem;
-        }
-        .talk-links a {
-            font-size: 0.85rem;
-            margin-right: 1rem;
-        }
+.logo{
+    font-size:1.5rem;
+    font-weight:700;
+}
 
-        /* about stats */
-        .about-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-        .about-text {
-            flex: 2;
-        }
-        .about-stats {
-            display: flex;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-        .stat-label {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            font-weight: 500;
-            color: var(--text-muted);
-        }
+.nav-links{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
 
-        /* research grid */
-        .research-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        .research-card {
-            background: var(--card-white);
-            padding: 2rem 1.8rem;
-            border-radius: 28px;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            border: 1px solid var(--border-light);
-        }
-        .research-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--secondary);
-        }
-        .research-card i {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 1.2rem;
-        }
-        .research-card a {
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
+.nav-links a{
+    text-decoration:none;
+    color:var(--text);
+    font-weight:500;
+}
 
-        /* publication item */
-        .publication-list {
-            max-width: 950px;
-            margin: 3rem auto 0;
-        }
-        .publication-item {
-            background: var(--card-white);
-            padding: 1.8rem;
-            margin-bottom: 1.5rem;
-            border-radius: 24px;
-            border-left: 5px solid var(--accent);
-            box-shadow: var(--shadow-sm);
-        }
-        .publication-year {
-            background: var(--primary);
-            display: inline-block;
-            padding: 0.2rem 1rem;
-            border-radius: 30px;
-            color: white;
-            font-weight: 600;
-            font-size: 0.8rem;
-            margin-bottom: 0.8rem;
-        }
-        .publication-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-        .publication-links a {
-            margin-right: 1rem;
-            font-size: 0.85rem;
-        }
+.hero{
+    padding:80px 0;
+}
 
-        /* timeline */
-        .timeline {
-            max-width: 800px;
-            margin: 3rem auto 0;
-            position: relative;
-        }
-        .timeline:before {
-            content: '';
-            position: absolute;
-            left: 32px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: var(--secondary);
-            opacity: 0.3;
-        }
-        .timeline-item {
-            position: relative;
-            padding-left: 70px;
-            margin-bottom: 2rem;
-        }
-        .timeline-date {
-            position: absolute;
-            left: 0;
-            top: 0;
-            background: var(--accent);
-            color: white;
-            font-weight: 700;
-            padding: 0.3rem 0.9rem;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            width: auto;
-            text-align: center;
-        }
-        .timeline-content {
-            background: var(--card-white);
-            padding: 1.5rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow-sm);
-        }
+.banner{
+    background:linear-gradient(135deg,#2563EB,#06B6D4);
+    color:white;
+    padding:20px;
+    border-radius:20px;
+    text-align:center;
+    margin-bottom:40px;
+    font-weight:600;
+    box-shadow:0 10px 30px rgba(37,99,235,.2);
+}
 
-        /* Gallery Styles */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.8rem;
-            margin-top: 2rem;
-        }
-        .gallery-item {
-            background: var(--card-white);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            border: 1px solid var(--border-light);
-            cursor: pointer;
-        }
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .gallery-caption {
-            padding: 0.8rem;
-            text-align: center;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .upload-area {
-            background: var(--light-bg);
-            border: 2px dashed var(--secondary);
-            border-radius: 28px;
-            padding: 2rem;
-            text-align: center;
-            margin: 1rem 0;
-            transition: var(--transition);
-        }
-        .upload-area.drag-over {
-            background: rgba(44,125,160,0.1);
-            border-color: var(--accent);
-        }
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:50px;
+    align-items:center;
+}
 
-        /* Blog/News Styles */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .blog-card {
-            background: var(--card-white);
-            border-radius: 24px;
-            padding: 1.8rem;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-light);
-            transition: var(--transition);
-        }
-        .blog-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-        }
-        .blog-date {
-            font-size: 0.7rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }
+.hero h1{
+    font-size:4rem;
+    margin-bottom:15px;
+}
 
-        /* contact & footer */
-        .contact-container {
-            display: flex;
-            gap: 3rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-        .contact-info, .contact-form {
-            flex: 1;
-            min-width: 260px;
-        }
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .contact-detail i {
-            width: 46px;
-            height: 46px;
-            background: #eef2f6;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--secondary);
-        }
-        body.dark .contact-detail i {
-            background: #2d4055;
-        }
-        .form-control {
-            width: 100%;
-            padding: 0.9rem 1rem;
-            border: 1px solid var(--border-light);
-            border-radius: 24px;
-            font-family: inherit;
-            background: var(--card-white);
-            color: var(--text-dark);
-        }
-        footer {
-            background: var(--primary-deep);
-            color: #eef2ff;
-            padding: 3rem 0 2rem;
-            margin-top: 2rem;
-        }
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        .social-links a {
-            background: rgba(255,255,255,0.1);
-            width: 42px;
-            height: 42px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin-left: 0.6rem;
-            transition: all 0.2s;
-            color: white;
-        }
-        .social-links a:hover {
-            background: var(--accent);
-            transform: translateY(-3px);
-        }
-        .three-columns {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            align-items: center;
-            margin-top: 1rem;
-        }
-        
-        /* Modal for PDF/Image */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-        .modal-content {
-            max-width: 90%;
-            max-height: 85%;
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-        }
-        .modal iframe, .modal img {
-            width: 100%;
-            height: auto;
-            max-height: 85vh;
-        }
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            z-index: 2001;
-        }
-        
-        @media (max-width: 780px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                background: var(--card-white);
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                padding: 1.5rem;
-                gap: 1.2rem;
-                box-shadow: 0 20px 30px rgba(0,0,0,0.05);
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-            }
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-            .hero-text p {
-                max-width: 100%;
-            }
-            .container {
-                padding: 0 1.4rem;
-            }
-            .btn-outline {
-                margin-left: 0;
-                margin-top: 0.8rem;
-            }
-        }
-        .animate-in {
-            animation: fadeUp 0.5s ease forwards;
-        }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(18px);}
-            to { opacity: 1; transform: translateY(0);}
-        }
-        iframe {
-            max-width: 100%;
-            border-radius: 24px;
-        }
-        .badge-base {
-            margin-top: 0.5rem;
-        }
-        .page-section {
-            display: none;
-        }
-        .page-section.active-page {
-            display: block;
-        }
-        .form-status {
-            margin-top: 0.5rem;
-            font-size: 0.8rem;
-        }
-        .delete-img-btn {
-            background: none;
-            border: none;
-            color: var(--accent);
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-    </style>
+.hero h2{
+    color:var(--secondary);
+    margin-bottom:20px;
+}
+
+.hero p{
+    color:var(--muted);
+    margin-bottom:25px;
+}
+
+.hero img{
+    width:100%;
+    max-width:380px;
+    border-radius:30px;
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.btn{
+    display:inline-block;
+    background:var(--secondary);
+    color:white;
+    padding:12px 25px;
+    border-radius:40px;
+    text-decoration:none;
+    margin-right:10px;
+}
+
+.btn-outline{
+    background:white;
+    border:2px solid var(--secondary);
+    color:var(--secondary);
+}
+
+.metrics{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin:70px 0;
+}
+
+.metric{
+    background:white;
+    padding:30px;
+    text-align:center;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.metric h3{
+    font-size:2rem;
+    color:var(--secondary);
+}
+
+.section{
+    padding:80px 0;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+.conference{
+    border-left:5px solid var(--secondary);
+}
+
+.research-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.research-card{
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.research-card:hover{
+    transform:translateY(-5px);
+}
+
+.research-card i{
+    font-size:2rem;
+    color:var(--secondary);
+    margin-bottom:15px;
+}
+
+.news-card{
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+footer{
+    background:var(--primary);
+    color:white;
+    padding:50px 0;
+    text-align:center;
+}
+
+@media(max-width:768px){
+
+.hero-grid{
+    grid-template-columns:1fr;
+}
+
+.metrics{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.hero h1{
+    font-size:2.5rem;
+}
+
+.nav-links{
+    display:none;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
 <header>
-    <div class="container">
-        <div class="navbar">
-            <div class="logo">
-                <h1>Ashish Kumar</h1>
-                <p>Plasma Physics | Environmental Engineer</p>
-            </div>
-            <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#" data-page="home">Home</a></li>
-                <li><a href="#" data-page="about">About</a></li>
-                <li><a href="#" data-page="research">Research</a></li>
-                <li><a href="#" data-page="publications">Publications</a></li>
-                <li><a href="#" data-page="talks">Talks & Seminars</a></li>
-                <li><a href="#" data-page="gallery">Gallery</a></li>
-                <li><a href="#" data-page="blog">News</a></li>
-                <li><a href="#" data-page="experience">Experience</a></li>
-                <li><a href="#" data-page="contact">Contact</a></li>
-            </ul>
-            <button id="darkModeToggle" class="theme-toggle" aria-label="Dark mode"><i class="fas fa-moon"></i></button>
-        </div>
-    </div>
-</header>
+<div class="container">
+<div class="navbar">
 
-<!-- HOME PAGE SECTION -->
-<section id="home-page" class="page-section active-page">
-    <div class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Ashish Kumar<br><span style="color: var(--secondary);">PhD Researcher in Plasma Physics</span></h1>
-                    <p>Ion mobility spectrometry · Atmospheric discharges · Air quality · Sustainable infrastructure. I combine plasma physics and environmental engineering to develop advanced ion mobility spectrometer for healthier indoor and urban environments, aligned with SDG 3 & 11.</p>
-                    <div>
-                        <a href="#" data-page="publications" class="btn">Publications</a>
-                        <a href="#" data-page="talks" class="btn btn-outline">Upcoming Talks</a>
-                        <a href="#" id="downloadCVBtn" class="btn btn-outline" style="margin-left: 0.8rem;"><i class="fas fa-download"></i> CV</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="images/1769018538956.jpg" alt="Ashish Kumar - researcher" onerror="this.src='https://placehold.co/400x400?text=Ashish+Kumar'">
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ABOUT SECTION -->
-<section id="about-page" class="page-section section-padding">
-    <div class="container">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>I am a dedicated PhD researcher in Plasma Physics at Comenius University in Bratislava, holding an M.Tech in Infrastructure Engineering (Environmental Engineering) from IIT Jodhpur. My work merges experimental plasma physics with environmental monitoring — currently building an advanced ion mobility spectrometer for VOC detection in indoor environments. Previously I've worked on carbonaceous aerosols (EC/OC) over semi-arid regions and contributed to EIA reports for infrastructure projects.</p>
-                <p>My interdisciplinary background allows me to approach air pollution, green building performance, and low-carbon development from a unique perspective. I regularly collaborate with atmospheric physics groups and material scientists.</p>
-                <div class="about-stats">
-                    <div class="stat-item"><div class="stat-number">3+</div><div class="stat-label">Years Research</div></div>
-                    <div class="stat-item"><div class="stat-number">5</div><div class="stat-label">Peer-reviewed works</div></div>
-                    <div class="stat-item"><div class="stat-number">6+</div><div class="stat-label">Talks & Lectures</div></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- RESEARCH INTERESTS -->
-<section id="research-page" class="page-section section-padding" style="background-color: var(--light-bg);">
-    <div class="container">
-        <h2 style="text-align: center;">Research Focus</h2>
-        <p style="text-align: center; max-width: 700px; margin: 0.5rem auto 0;">Advancing plasma-based sensing, air quality, and sustainable engineering.</p>
-        <div class="research-grid">
-            <div class="research-card"><i class="fas fa-microchip"></i><h3>Ion Mobility Spectrometry</h3><p>Development of IMS-oaTOF and drift tube instruments for VOC detection, electron swarm parameters.</p><a href="https://neon.dpp.fmph.uniba.sk/workgroup/index.php?option=com_content&view=article&id=14&Itemid=117" target="_blank">Laboratory of Plasma Physics →</a></div>
-            <div class="research-card"><i class="fas fa-bolt"></i><h3>Atmospheric Discharges</h3><p>Corona discharge physics, ionization sources for mobility spectrometers, plasma chemistry.</p></div>
-            <div class="research-card"><i class="fas fa-smog"></i><h3>Air Pollution & Indoor Quality</h3><p>PM2.5 carbonaceous species, spatio-temporal variability, indoor VOCs, green building interventions.</p><a href="https://home.iitj.ac.in/~dbhattu/group.php" target="_blank">Aerosol Research Group IITJ →</a></div>
-            <div class="research-card"><i class="fas fa-leaf"></i><h3>Environmental Sustainability</h3><p>Low-carbon development, life cycle assessment (LCA), green building performance and material footprint.</p></div>
-            <div class="research-card"><i class="fas fa-brain"></i><h3>Machine Learning in Environment</h3><p>ML for soil CBR prediction, air quality forecasting, and contamination source apportionment.</p></div>
-            <div class="research-card"><i class="fas fa-recycle"></i><h3>EIA & LCA</h3><p>Environmental impact assessment, sustainable infrastructure, and circular economy strategies.</p></div>
-        </div>
-    </div>
-</section>
-
-<!-- PUBLICATIONS SECTION -->
-<section id="publications-page" class="page-section section-padding">
-    <div class="container">
-        <h2 style="text-align: center;">Selected Publications</h2>
-        <div class="publication-list">
-            <div class="publication-item"><div class="publication-year">2025</div><div class="publication-title">Stabilization of Soil of Hilly Region Using Fly Ash With Various Additives</div><div class="publication-authors">Markuna, S., Jhinkwan, H., Kumar, A., Dumka, B.B.</div><div class="publication-venue">Advances in Research 26 (6):188-207</div><div class="publication-links"><a href="#"><i class="fas fa-file-pdf"></i> PDF</a> <a href="https://doi.org/10.9734/air/2025/v26i61540"><i class="fas fa-external-link-alt"></i> DOI</a></div></div>
-            <div class="publication-item"><div class="publication-year">2025</div><div class="publication-title">Estimation of Soaked California Bearing Ratio of Soil Using Machine Learning Methods</div><div class="publication-authors">Markuna, S., Jhinkwan, H., Kumar, A., Dumka, B.B., Yadav, A.K.</div><div class="publication-venue">Journal of Scientific Research and Reports 31 (10):335–350</div><div class="publication-links"><a href="#"><i class="fas fa-file-pdf"></i> PDF</a> <a href="https://doi.org/10.9734/jsrr/2025/v31i103576"><i class="fas fa-external-link-alt"></i> DOI</a></div></div>
-<div class="publication-item">
-    <div class="publication-year">2023</div>
-    <div class="publication-title">
-        Investigating Spatio-temporal Variability of PM2.5 Carbonaceous Aerosol Species (EC, OC and SOC) Over Semi-arid Region of Rajasthan
-        <br>
-        <span class="pub-author">Ashish Kumar</span>
-        <br>
-        <a href="https://libraryopac.iitj.ac.in/cgi-bin/koha/opac-detail.pl?biblionumber=16626&shelfbrowse_itemnumber=28975" target="_blank">
-            🔗 View Thesis
-        </a>
-    </div>
+<div class="logo">
+Ashish Kumar
 </div>
 
-        </div>
-        <div style="text-align: center; margin-top: 2.5rem;">
-            <a href="https://scholar.google.com/citations?user=XWhP61YAAAAJ&hl=en" class="btn" target="_blank"><i class="fas fa-graduation-cap"></i> Google Scholar</a>
-            <a href="https://www.researchgate.net/" class="btn btn-outline" target="_blank"><i class="fab fa-researchgate"></i> ResearchGate</a>
-        </div>
-    </div>
+<ul class="nav-links">
+<li>#</li>
+<li>#</li>
+<li>#Publications</a></li>
+<li>#></li>
+<li>#</li>
+</ul>
+
+</div>
+</div>
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<div class="banner">
+🎉 Poster Accepted at IMSC 2026 • Lyon, France<br>
+Study of Aliphatic Ketones Isomers and the Formation of Symmetric and Asymmetric Dimers in Mixtures by APCI–Ion Mobility Spectrometry
+</div>
+
+<div class="hero-grid">
+
+<div>
+
+<h1>Ashish Kumar</h1>
+
+<h2>
+PhD Researcher in Plasma Physics
+</h2>
+
+<p>
+Comenius University Bratislava | Ion Mobility Spectrometry |
+Atmospheric Pressure Ionization | Indoor Air Quality Monitoring
+</p>
+
+<p>
+My research focuses on ion mobility spectrometry,
+ketone isomer separation, proton-bound dimer formation,
+VOC detection, atmospheric chemistry, and advanced plasma diagnostics.
+</p>
+
+#
+<i class="fas fa-flask"></i> Research
+</a>
+
+# class="btn btn-outline">
+<i class="fas fa-book"></i> Publications
+</a>
+
+</div>
+
+<div>
+1769018538956.jpg" alt="Ashish Kumar">
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<!-- TALKS & SEMINARS PAGE -->
-<section id="talks-page" class="page-section section-padding">
-    <div class="container">
-        <h2 style="text-align: center;">Invited Talks, Seminars & Lectures</h2>
-        <p style="text-align: center; max-width: 750px; margin: 1rem auto 2rem;">Sharing insights at the intersection of plasma physics, environmental monitoring, and sustainable infrastructure. Selected presentations from conferences, university seminars, and public lectures.</p>
-        <div class="talks-grid">
-            <!--<div class="talk-card">
-                <div class="talk-icon"><i class="fas fa-chalkboard-user"></i></div>
-                <div class="talk-date">June 2026</div>
-                <div class="talk-title">Ion Mobility Spectrometry for Indoor VOC Monitoring</div>
-                <div class="talk-venue">Faculty Seminar, REC Ambedkar Nagar</div>
-                <p>Invited talk on drift tube IMS design, ketones studies, and real-time air quality applications.</p>
-                <div class="talk-links"><a href="#" class="pdf-view-link" data-pdf="https://example.com/abstract1.pdf"><i class="fas fa-file-pdf"></i> Abstract (PDF)</a></div>
-            </div>-->
-            <div class="talk-card">
-                <div class="talk-icon"><i class="fas fa-globe"></i></div>
-                <div class="talk-date">May 2026</div>
-                <div class="talk-title">Design and Development of a 10.6 eV Krypton VUV Lamp for Photoionization in Ion Mobility Spectrometry</div>
-                <div class="talk-venue">Week of Doctoral Students 2026, Charles University, Prague</div>
-                <div class="talk-links"><a href="#" class="pdf-view-link" data-pdf="https://physics.mff.cuni.cz/wds/proc/WDS26_Book_of_abstracts.pdf"><i class="fas fa-file-powerpoint"></i> Abstract</a></div>
-            </div>
-            <div class="talk-card">
-                <div class="talk-icon"><i class="fas fa-chalkboard"></i></div>
-                <div class="talk-date">December 2025</div>
-                <div class="talk-title">Temperature Dependent Detection of Ketones in Ion Mobility Spectrometry with Corona Discharge Ionization</div>
-                <div class="talk-venue">40th PSSI National Symposium, IIT Tirupati</div>
-                <p>Presented poster on Temperature Dependent Detection of Ketones.</p>
-                <div class="talk-links"><a href="#" class="pdf-view-link" data-pdf="https://iittpplasma2025.vercel.app/proceedings"><i class="fas fa-file-alt"></i> Abstract</a></div>
-            </div>
-            <div class="talk-card">
-                <div class="talk-icon"><i class="fas fa-microphone-alt"></i></div>
-                <div class="talk-date">November 2025</div>
-                <div class="talk-title">Detection of Indoor Ketones Using Ion Mobility Spectrometry with Air as Carrier Gas</div>
-                <div class="talk-venue">Comenius University, Bratislava</div>
-                <p>Indoor air quality and VOCs emitted from building materials.</p>
-                <div class="talk-links"><a href="#" class="pdf-view-link" data-pdf="https://conference.uniba.sk/event/1/contributions/111/attachments/68/97/Kumar%20Poster%2017122025.ak%20(1).pdf"><i class="fas fa-eye"></i> Poster</a></div>
-            </div>
-            <div class="talk-card">
-                <div class="talk-icon"><i class="fas fa-university"></i></div>
-                <div class="talk-date">October 2025</div>
-                <div class="talk-title">Temperature-Dependent Detection of Ketones in Ion Mobility Spectrometry</div>
-                <div class="talk-venue">Department Seminar, FMFI UK, Bratislava</div>
-                <div class="talk-links"><a href="#" class="pdf-view-link"><i class="fas fa-download"></i> Abstract</a></div>
-            </div>
-            <div class="talk-card">
-                <div class="talk-icon"><i class="fas fa-industry"></i></div>
-                <div class="talk-date">February 2025</div>
-                <div class="talk-title">Environmental Impact Assessment & Green Building Performance</div>
-                <div class="talk-venue">Sustainable Infrastructure Summit, Mumbai (SAGE India)</div>
-                <p>Panel discussion on integrating LCA, EIA reports, and low-carbon development strategies.</p>
-                <div class="talk-links"><a href="#"><i class="fas fa-newspaper"></i> Event summary</a></div>
-            </div>
-        </div>
-        <div style="text-align: center; margin-top: 3rem;">
-            <p style="color: var(--text-muted);"><i class="fas fa-calendar-alt"></i> For future speaking engagements or invited seminars, please reach out via the contact page.</p>
-        </div>
-    </div>
+<div class="container">
+
+<section class="metrics">
+
+<div class="metric">
+<h3>5+</h3>
+<p>Publications</p>
+</div>
+
+<div class="metric">
+<h3>6+</h3>
+<p>Presentations</p>
+</div>
+
+<div class="metric">
+<h3>3+</h3>
+<p>Years Research</p>
+</div>
+
+<div class="metric">
+<h3>4</h3>
+<p>Research Fields</p>
+</div>
+
 </section>
 
-<!-- GALLERY PAGE -->
-<section id="gallery-page" class="page-section section-padding">
-    <div class="container">
-        <h2 style="text-align: center;">Image Gallery</h2>
-        <p style="text-align: center; margin-bottom: 1rem;">Research snapshots, lab setups, conferences, and events.</p>
-        
-        <div class="upload-area" id="uploadArea">
-            <i class="fas fa-cloud-upload-alt" style="font-size: 2.5rem; color: var(--secondary); margin-bottom: 0.5rem; display: block;"></i>
-            <p>Drag & drop images here or click to select</p>
-            <label class="btn btn-sm" for="imageUploadInput" style="display: inline-block; margin-top: 0.5rem;"><i class="fas fa-plus-circle"></i> Select Images</label>
-            <input type="file" id="imageUploadInput" multiple accept="image/jpeg, image/png, image/jpg, image/webp" style="display: none;">
-        </div>
-        
-        <div id="galleryContainer" class="gallery-grid">
-            <div style="grid-column:1/-1; text-align:center; padding: 2rem; color: var(--text-muted);">
-                <i class="fas fa-images" style="font-size: 3rem; opacity: 0.4;"></i>
-                <p>No images yet. Upload your lab photos, conference pictures, or research posters.</p>
-            </div>
-        </div>
-        
-        <div style="text-align: center; margin-top: 1rem;">
-            <button id="clearGalleryBtn" class="btn btn-outline btn-sm"><i class="fas fa-trash-alt"></i> Clear All Images</button>
-        </div>
-    </div>
+</div>
+
+<section class="section">
+
+<div class="container">
+
+<h2 class="section-title">
+Upcoming International Conference
+</h2>
+
+<div class="card conference">
+
+<h3>
+26th International Mass Spectrometry Conference (IMSC 2026)
+</h3>
+
+<p>
+📍 Centre de Congrès de Lyon, France
+</p>
+
+<p>
+📅 22–28 August 2026
+</p>
+
+<p>
+Poster Presentation:
+<b>
+Study of Aliphatic Ketones Isomers and the Formation of Symmetric and Asymmetric Dimers in Mixtures by APCI–Ion Mobility Spectrometry
+</b>
+</p>
+
+</div>
+
+</div>
+
 </section>
 
-<!-- BLOG / NEWS SECTION -->
-<section id="blog-page" class="page-section section-padding" style="background-color: var(--light-bg);">
-    <div class="container">
-        <h2 style="text-align: center;">News & Updates</h2>
-        <p style="text-align: center; margin-bottom: 2rem;">
-            Latest research activities, conference participations, and achievements.
-        </p>
+<section class="section">
 
-        <div class="blog-grid">
+<div class="container">
 
-            <div class="blog-card">
-                <div class="blog-date">
-                    <i class="far fa-calendar-alt"></i> August 2026
-                </div>
-                <h3>Participation in IMSC 2026 Confirmed</h3>
-                <p>
-                    Registration and poster presentation confirmed for the
-                    26th International Mass Spectrometry Conference (IMSC 2026),
-                    Lyon, France. The poster focuses on ketone isomer separations
-                    and symmetric/asymmetric dimer formation using APCI-Ion
-                    Mobility Spectrometry.
-                </p>
-            </div>
+<h2 class="section-title">
+Research Focus
+</h2>
 
-            <div class="blog-card">
-                <div class="blog-date">
-                    <i class="far fa-calendar-alt"></i> May 2026
-                </div>
-                <h3>Presented at Week of Doctoral Students 2026</h3>
-                <p>
-                    Charles University, Prague – Presented research on
-                    "Design and Development of a 10.6 eV Krypton VUV Lamp for
-                    Photoionization in Ion Mobility Spectrometry".
-                </p>
-            </div>
+<div class="research-grid">
 
-            <div class="blog-card">
-                <div class="blog-date">
-                    <i class="far fa-calendar-alt"></i> December 2025
-                </div>
-                <h3>Poster Presentation at IIT Tirupati</h3>
-                <p>
-                    40th PSSI National Symposium on Plasma Science and Technology –
-                    Presented on temperature-dependent detection of ketones using
-                    corona discharge IMS.
-                </p>
-            </div>
+<div class="research-card">
+<i class="fas fa-microchip"></i>
+<h3>Ion Mobility Spectrometry</h3>
+<p>
+Development of IMS systems for VOC identification,
+ion separation, and mobility studies.
+</p>
+</div>
 
-            <div class="blog-card">
-                <div class="blog-date">
-                    <i class="far fa-calendar-alt"></i> November 2025
-                </div>
-                <h3>New Publication on Soil Stabilization</h3>
-                <p>
-                    Research paper "Stabilization of Soil of Hilly Region Using Fly Ash
-                    With Various Additives" published in Advances in Research (Vol. 26).
-                </p>
-            </div>
+<div class="research-card">
+<i class="fas fa-flask"></i>
+<h3>Ketone Isomer Separation</h3>
+<p>
+Investigation of ketone isomers and symmetric/asymmetric
+dimer formation under APCI conditions.
+</p>
+</div>
 
-            <div class="blog-card">
-                <div class="blog-date">
-                    <i class="far fa-calendar-alt"></i> October 2025
-                </div>
-                <h3>Department Seminar at FMFI UK</h3>
-                <p>
-                    Invited departmental seminar on "Temperature-Dependent Detection
-                    of Ketones in Ion Mobility Spectrometry with Corona Discharge
-                    Ionization".
-                </p>
-            </div>
+<div class="research-card">
+<i class="fas fa-smog"></i>
+<h3>Indoor Air Quality</h3>
+<p>
+Monitoring volatile organic compounds and atmospheric
+pollutants in built environments.
+</p>
+</div>
 
-        </div>
+</div>
 
-        <div style="text-align: center; margin-top: 2rem;">
-            # data-page="contact" class="btn">
-                <i class="fas fa-envelope"></i> Subscribe for Updates
-            </a>
-        </div>
-    </div>
-</section>
-<!-- EXPERIENCE & EDUCATION -->
-<section id="experience-page" class="page-section section-padding" style="background-color: var(--light-bg);">
-    <div class="container">
-        <h2 style="text-align: center;">Academic & Professional Journey</h2>
-        <div class="timeline">
-            <div class="timeline-item"><div class="timeline-date">2024 – present</div><div class="timeline-content"><h4>PhD Researcher in Plasma Physics</h4><div class="company">Comenius University Bratislava</div><p>Ion mobility spectrometry for VOC detection, building advanced IMS drift tube, supervised by Prof. Štefan Matejčík.</p></div></div>
-            <div class="timeline-item"><div class="timeline-date">2023 – 2024</div><div class="timeline-content"><h4>Project Associate – EIA & Environmental Planning</h4><div class="company">SAGE Mumbai</div><p>Environmental Impact Assessment reports for industrial corridors, greenfield projects and infrastructure compliance.</p></div></div>
-            <div class="timeline-item"><div class="timeline-date">2021 – 2023</div><div class="timeline-content"><h4>M.Tech Infrastructure Engineering (Env. Eng.)</h4><div class="company">Indian Institute of Technology Jodhpur</div><p>Thesis: Spatio-temporal variability of PM2.5 carbonaceous aerosols (EC, OC, SOC) over Rajasthan.</p></div></div>
-            <div class="timeline-item"><div class="timeline-date">2015 – 2019</div><div class="timeline-content"><h4>B.Tech Civil Engineering</h4><div class="company">Dr. A.P.J. Abdul Kalam Technical University</div><p>Project: Classification of soil in Uttar Pradesh – Geotechnical characterization.</p></div></div>
-        </div>
-    </div>
+</div>
+
 </section>
 
-<!-- CONTACT SECTION -->
-<section id="contact-page" class="page-section section-padding">
-    <div class="container">
-        <h2 style="text-align: center;">Let's Connect</h2>
-        <p style="text-align: center; max-width: 680px; margin: 1rem auto;">Interested in collaboration, ion mobility systems, air quality research? Write to me.</p>
-        <div class="contact-container">
-            <div class="contact-info">
-                <h3>Contact details</h3>
-                <div class="contact-detail"><i class="fas fa-envelope"></i><div><h4>Email</h4><p>kumar18@uniba.sk</p></div></div>
-                <div class="contact-detail"><i class="fas fa-map-marker-alt"></i><div><h4>Location</h4><p>Faculty of Mathematics, Physics & Informatics, Comenius University, Mlynská dolina, 84248 Bratislava, Slovakia</p></div></div>
-                <div class="contact-detail"><i class="fas fa-phone-alt"></i><div><h4>Office</h4><p>+421 2 602 95 311</p></div></div>
-                <div class="social-links" style="margin-top: 1rem; margin-left: 0;">
-                    <a href="https://www.linkedin.com/in/kumarashish18/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://github.com/Kumar18cub" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://scholar.google.com/citations?user=XWhP61YAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i></a>
-                    <a href="https://orcid.org/0000-0002-2653-0216" target="_blank"><i class="fab fa-orcid"></i></a>
-                    <a href="https://www.researchgate.net/" target="_blank"><i class="fab fa-researchgate"></i></a>
-                </div>
-                <iframe width="100%" height="200" src="https://www.youtube.com/embed/qC1P6FSWAk0?si=OkKMUxtenQc-y-g5&start=9" title="Plasma physics lab demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 20px; margin-top: 1rem;"></iframe>
-            </div>
-            <div class="contact-form">
-                <h3>Send a message</h3>
-                <form id="contactForm">
-                    <div class="form-group"><label>Full name</label><input type="text" id="name" class="form-control" placeholder="Your name" required></div>
-                    <div class="form-group"><label>Email address</label><input type="email" id="email" class="form-control" placeholder="name@example.com" required></div>
-                    <div class="form-group"><label>Subject</label><input type="text" id="subject" class="form-control" placeholder="Research / Collaboration" required></div>
-                    <div class="form-group"><label>Message</label><textarea id="message" class="form-control" rows="4" placeholder="Your message..." required></textarea></div>
-                    <button type="submit" class="btn">Send Message <i class="fas fa-paper-plane"></i></button>
-                    <p id="formStatus" class="form-status"></p>
-                </form>
-                <p style="font-size: 0.75rem; margin-top: 1rem; color: var(--text-muted);">
-                    <i class="fas fa-code-branch"></i> Note: To enable email sending, replace EmailJS credentials in the script (search "TODO_EMAILJS").
-                </p>
-            </div>
-        </div>
-    </div>
+<section class="section">
+
+<div class="container">
+
+<h2 class="section-title">
+Latest News
+</h2>
+
+<div class="news-card">
+
+<h3>
+🎉 Participation in IMSC 2026 Confirmed
+</h3>
+
+<p>
+Registration successfully completed for the
+26th International Mass Spectrometry Conference
+in Lyon, France. Poster presentation accepted
+under Ion Mobility Separation, Fundamentals,
+Instrumentation and Atmospheric Chemistry.
+</p>
+
+</div>
+
+</div>
+
 </section>
 
 <footer>
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-logo"><h3 style="color:white;">Ashish Kumar</h3><p style="color:#bdd4e2;">PhD Researcher | Plasma Physics</p>
-                <div class="three-columns">
-                    <div><script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=6gB5Qr-sgguMhLOVmsh_rFBECepoO45EZUWsBepYuTU&w=150"></script></div>
-                    <div><div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="kumarashish18" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://sk.linkedin.com/in/kumarashish18?trk=profile-badge">LinkedIn</a></div></div>
-                    <div><a id="cy-effective-orcid-url" href="https://orcid.org/0000-0002-2653-0216" target="_blank" style="color:#fff;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1rem;"> orcid.org/0000-0002-2653-0216</a><br><a href="https://info.flagcounter.com/u1g1"><img src="https://s01.flagcounter.com/countxl/u1g1/bg_0a2b42/txt_FFFFFF/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_1/pageviews_1/" alt="Flag Counter" border="0" style="margin-top:6px;"></a></div>
-                </div>
-            </div>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/kumarashish18/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/Kumar18cub" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://scholar.google.com/citations?user=XWhP61YAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i></a>
-                <a href="https://orcid.org/0000-0002-2653-0216" target="_blank"><i class="fab fa-orcid"></i></a>
-            </div>
-        </div>
-        <div class="copyright" style="text-align:center; border-top:1px solid rgba(255,255,255,0.15); padding-top:1.5rem; margin-top:1.5rem;">
-            <p>&copy; 2026 Ashish Kumar — All rights reserved. | Last updated: June 2026</p>
-        </div>
-    </div>
+
+<h2>Ashish Kumar</h2>
+
+<p>
+PhD Researcher | Plasma Physics
+</p>
+
+<p>
+Comenius University Bratislava
+</p>
+
+<p>
+kumar18@uniba.sk
+</p>
+
+<br>
+
+<p>
+LinkedIn • ORCID • Google Scholar • ResearchGate • GitHub
+</p>
+
+<br>
+
+<p>
+© 2026 Ashish Kumar
+</p>
+
 </footer>
 
-<!-- Modals -->
-<div id="pdfModal" class="modal">
-    <span class="close-modal">&times;</span>
-    <iframe id="pdfFrame" style="width: 80%; height: 80%; background: white; border-radius: 16px;"></iframe>
-</div>
-<div id="imageModal" class="modal">
-    <span class="close-modal">&times;</span>
-    <img id="modalImg" style="max-width: 90%; max-height: 85%; border-radius: 16px;">
-</div>
-
-<script>
-    // ============================================
-    // PAGE NAVIGATION
-    // ============================================
-    const pages = ['home', 'about', 'research', 'publications', 'talks', 'gallery', 'blog', 'experience', 'contact'];
-    
-    function showPage(pageId) {
-        pages.forEach(p => {
-            const el = document.getElementById(`${p}-page`);
-            if (el) el.classList.remove('active-page');
-        });
-        const activeSection = document.getElementById(`${pageId}-page`);
-        if (activeSection) activeSection.classList.add('active-page');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('data-page') === pageId) link.classList.add('active');
-        });
-    }
-
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const page = link.getAttribute('data-page');
-            if (page) showPage(page);
-        });
-    });
-    document.querySelectorAll('[data-page]').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const page = btn.getAttribute('data-page');
-            if (page) { e.preventDefault(); showPage(page); }
-        });
-    });
-    
-    showPage('home');
-
-    // Mobile menu toggle
-    document.getElementById('menuToggle').addEventListener('click', function() {
-        document.getElementById('navLinks').classList.toggle('active');
-    });
-    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active')));
-
-    // ============================================
-    // DARK MODE
-    // ============================================
-    const darkToggle = document.getElementById('darkModeToggle');
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark');
-        darkToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    }
-    darkToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        const isDark = document.body.classList.contains('dark');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        darkToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    });
-
-    // ============================================
-    // PDF VIEWER MODAL
-    // ============================================
-    const pdfModal = document.getElementById('pdfModal');
-    const pdfFrame = document.getElementById('pdfFrame');
-    const closeModals = document.querySelectorAll('.close-modal');
-    
-    document.querySelectorAll('.pdf-view-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            let url = link.getAttribute('data-pdf');
-            if (url) {
-                pdfFrame.src = url;
-                pdfModal.style.display = 'flex';
-            } else {
-                alert('PDF link to be added. You can replace this with your actual file URL.');
-            }
-        });
-    });
-    
-    closeModals.forEach(btn => {
-        btn.addEventListener('click', () => {
-            pdfModal.style.display = 'none';
-            document.getElementById('imageModal').style.display = 'none';
-            pdfFrame.src = '';
-        });
-    });
-    
-    pdfModal.addEventListener('click', (e) => {
-        if (e.target === pdfModal) {
-            pdfModal.style.display = 'none';
-            pdfFrame.src = '';
-        }
-    });
-    
-    const imageModal = document.getElementById('imageModal');
-    imageModal.addEventListener('click', (e) => {
-        if (e.target === imageModal) imageModal.style.display = 'none';
-    });
-
-    // ============================================
-    // IMAGE GALLERY WITH LOCALSTORAGE
-    // ============================================
-    let imageStore = [];
-    
-    function saveGallery() {
-        localStorage.setItem('ashish_gallery', JSON.stringify(imageStore));
-        renderGallery();
-    }
-    
-    function renderGallery() {
-        const container = document.getElementById('galleryContainer');
-        if (!container) return;
-        
-        if (imageStore.length === 0) {
-            container.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding: 2rem; color: var(--text-muted);"><i class="fas fa-images" style="font-size: 3rem; opacity: 0.4;"></i><p>No images yet. Upload your lab photos, conference pictures, or research posters.</p></div>';
-            return;
-        }
-        
-        let html = '';
-        imageStore.forEach((img, idx) => {
-            html += `
-                <div class="gallery-item" data-index="${idx}">
-                    <img src="${img.dataUrl}" alt="${img.name}">
-                    <div class="gallery-caption">
-                        <span>${img.name}</span>
-                        <button class="delete-img-btn" data-idx="${idx}"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-            `;
-        });
-        container.innerHTML = html;
-        
-        document.querySelectorAll('.delete-img-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const idx = parseInt(btn.getAttribute('data-idx'));
-                imageStore.splice(idx, 1);
-                saveGallery();
-            });
-        });
-        
-        document.querySelectorAll('.gallery-item img').forEach(img => {
-            img.addEventListener('click', () => {
-                document.getElementById('modalImg').src = img.src;
-                imageModal.style.display = 'flex';
-            });
-        });
-    }
-    
-    function addImages(files) {
-        Array.from(files).forEach(file => {
-            if (file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = (ev) => {
-                    imageStore.push({
-                        dataUrl: ev.target.result,
-                        name: file.name.length > 30 ? file.name.substr(0, 27) + '...' : file.name
-                    });
-                    saveGallery();
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    }
-    
-    // Load stored images
-    const stored = localStorage.getItem('ashish_gallery');
-    if (stored) {
-        try {
-            imageStore = JSON.parse(stored);
-            renderGallery();
-        } catch(e) {}
-    }
-    
-    // Upload handlers
-    const uploadInput = document.getElementById('imageUploadInput');
-    const uploadArea = document.getElementById('uploadArea');
-    
-    if (uploadInput) {
-        uploadInput.addEventListener('change', (e) => {
-            addImages(e.target.files);
-            uploadInput.value = '';
-        });
-    }
-    
-    if (uploadArea) {
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('drag-over');
-        });
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('drag-over');
-        });
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('drag-over');
-            addImages(e.dataTransfer.files);
-        });
-        uploadArea.addEventListener('click', () => {
-            if (uploadInput) uploadInput.click();
-        });
-    }
-    
-    document.getElementById('clearGalleryBtn')?.addEventListener('click', () => {
-        if (confirm('Are you sure you want to delete all images?')) {
-            imageStore = [];
-            saveGallery();
-        }
-    });
-    
-    // ============================================
-    // CV DOWNLOAD (generated PDF)
-    // ============================================
-    document.getElementById('downloadCVBtn')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        // This creates a simple CV placeholder - you can replace with actual CV file
-        const cvContent = `
-            <html><body>
-            <h1>Ashish Kumar - Curriculum Vitae</h1>
-            <h2>PhD Researcher in Plasma Physics</h2>
-            <p>Email: kumar18@uniba.sk</p>
-            <h3>Education</h3>
-            <p>PhD Plasma Physics - Comenius University (2024-present)</p>
-            <p>M.Tech Infrastructure Engineering - IIT Jodhpur (2021-2023)</p>
-            <p>B.Tech Civil Engineering - AKTU (2015-2019)</p>
-            <h3>Research Experience</h3>
-            <p>Ion Mobility Spectrometry, VOC detection, Air Quality Monitoring</p>
-            </body></html>
-        `;
-        const blob = new Blob([cvContent], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'Ashish_Kumar_CV.pdf';
-        a.click();
-        URL.revokeObjectURL(url);
-    });
-    
-    // ============================================
-// CONTACT FORM (EmailJS enabled)
-// ============================================
-const contactForm = document.getElementById('contactForm');
-const formStatus = document.getElementById('formStatus');
-
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-
-    // ========================================
-    // EMAILJS CONFIGURATION (Your real values)
-    // ========================================
-    emailjs.init("nBWEOsJzW8ZA6bVIb");  // Public Key
-
-    emailjs.send("service_ab2vlgp", "template_ccdlx7l", {
-        from_name: name,
-        from_email: email,
-        subject: document.getElementById('subject').value,
-        message: document.getElementById('message').value,
-    }).then(() => {
-        formStatus.innerHTML = "✅ Message sent successfully! I'll get back to you soon.";
-        formStatus.style.color = "green";
-        contactForm.reset();
-    }).catch((error) => {
-        formStatus.innerHTML = "❌ Error sending message. Please try again or email me directly.";
-        formStatus.style.color = "red";
-        console.error("EmailJS error:", error);
-    });
-
-});
-
-    // ============================================
-    // ANIMATION ON SCROLL
-    // ============================================
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('animate-in');
-        });
-    }, { threshold: 0.1 });
-    
-    document.querySelectorAll('.research-card, .publication-item, .timeline-item, .talk-card, .blog-card, .gallery-item').forEach(el => observer.observe(el));
-</script>
 </body>
 </html>
